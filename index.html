@@ -3,24 +3,33 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Como Converter Livros do Kindle para PDF ou EPUB - Guia 2026</title>
+    <title id="page-title">Como Converter Livros do Kindle para PDF ou EPUB - Guia 2026</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
         body { font-family: 'Inter', sans-serif; }
         .gradient-bg { background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%); }
         .step-card:hover { transform: translateY(-2px); transition: all 0.3s ease; }
+        .lang-btn { transition: all 0.2s; filter: grayscale(100%); opacity: 0.6; }
+        .lang-btn.active { filter: grayscale(0%); opacity: 1; transform: scale(1.1); }
     </style>
 </head>
 <body class="bg-slate-50 text-slate-800">
 
+    <!-- Language Switcher -->
+    <div class="fixed top-4 right-4 z-50 flex gap-3 bg-white/80 backdrop-blur-md p-2 rounded-full shadow-lg border border-slate-200">
+        <button onclick="setLanguage('pt')" id="btn-pt" class="lang-btn active text-2xl" title="Português">🇧🇷</button>
+        <button onclick="setLanguage('en')" id="btn-en" class="lang-btn text-2xl" title="English">🇺🇸</button>
+        <button onclick="setLanguage('es')" id="btn-es" class="lang-btn text-2xl" title="Español">🇪🇸</button>
+    </div>
+
     <!-- Hero Section -->
     <header class="gradient-bg text-white py-16 px-4 shadow-lg">
         <div class="max-w-4xl mx-auto text-center">
-            <h1 class="text-4xl md:text-5xl font-bold mb-4">Como Converter Livros do Kindle para PDF ou EPUB</h1>
-            <p class="text-xl text-blue-100 opacity-90">Aprenda a remover a proteção (DRM) para ler seus livros em qualquer dispositivo</p>
+            <h1 id="hero-title" class="text-4xl md:text-5xl font-bold mb-4">Como Converter Livros do Kindle para PDF ou EPUB</h1>
+            <p id="hero-subtitle" class="text-xl text-blue-100 opacity-90">Aprenda a remover a proteção (DRM) para ler seus livros em qualquer dispositivo</p>
             <div class="mt-8 inline-block bg-white/10 backdrop-blur-md rounded-full px-6 py-2 text-sm font-medium border border-white/20">
-                Guia Atualizado: 10 de Abril de 2026
+                <span id="label-updated">Guia Atualizado:</span> 10 de Abril de 2026
             </div>
         </div>
     </header>
@@ -34,31 +43,31 @@
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 17c-.77 1.333.192 3 1.732 3z" />
                 </svg>
                 <div class="ml-4">
-                    <h3 class="text-amber-800 font-bold">Aviso de Uso Legal</h3>
-                    <p class="text-amber-700 text-sm">Este processo destina-se apenas ao <strong>uso pessoal</strong> em livros que você possui legalmente. O objetivo é garantir que você possa ler seus arquivos em outros leitores ou aplicativos.</p>
+                    <h3 id="warning-title" class="text-amber-800 font-bold">Aviso de Uso Legal</h3>
+                    <p id="warning-text" class="text-amber-700 text-sm">Este processo destina-se apenas ao uso pessoal em livros que você possui legalmente. O objetivo é garantir que você possa ler seus arquivos em outros leitores ou aplicativos.</p>
                 </div>
             </div>
         </div>
 
         <!-- Introdução -->
         <section class="mb-16">
-            <h2 class="text-2xl font-bold text-slate-900 mb-4 border-b pb-2">Por que este guia é necessário?</h2>
-            <p class="text-slate-600 leading-relaxed">
-                Os livros comprados na Amazon vêm com uma trava digital (DRM). Para transformá-los em PDF ou EPUB, precisamos de ferramentas especiais que "desbloqueiam" o arquivo. Este guia explica como usar os plugins gratuitos do <strong>Calibre</strong> para fazer isso em 2026, compatível com as versões 2.8.0 a 2.8.3 do Kindle para PC.
+            <h2 id="intro-title" class="text-2xl font-bold text-slate-900 mb-4 border-b pb-2">Por que este guia é necessário?</h2>
+            <p id="intro-text" class="text-slate-600 leading-relaxed">
+                Os livros comprados na Amazon vêm com uma trava digital (DRM). Para transformá-los em PDF ou EPUB, precisamos de ferramentas especiais que "desbloqueiam" o arquivo. Este guia explica como usar os plugins gratuitos do Calibre para fazer isso em 2026, compatível com as versões 2.8.0 a 2.8.3 do Kindle para PC.
             </p>
         </section>
 
         <!-- Passo a Passo -->
         <section class="space-y-8 mb-16">
-            <h2 class="text-2xl font-bold text-slate-900 mb-6 border-b pb-2">Passo a Passo Detalhado</h2>
+            <h2 id="steps-main-title" class="text-2xl font-bold text-slate-900 mb-6 border-b pb-2">Passo a Passo Detalhado</h2>
             
             <!-- Step 1 -->
             <div class="step-card bg-white p-8 rounded-2xl shadow-sm border border-slate-100">
                 <div class="flex items-center mb-4">
                     <span class="bg-blue-600 text-white w-8 h-8 rounded-full flex items-center justify-center font-bold mr-4 text-sm">01</span>
-                    <h3 class="text-xl font-bold">Preparação das Ferramentas</h3>
+                    <h3 id="step1-title" class="text-xl font-bold">Preparação das Ferramentas</h3>
                 </div>
-                <p class="text-slate-600 mb-6">Você precisará do programa <strong>Calibre (v9.3+)</strong> instalado. Baixe os dois componentes abaixo clicando nos botões:</p>
+                <p id="step1-text" class="text-slate-600 mb-6">Você precisará do programa Calibre (v9.3+) instalado. Baixe os dois componentes abaixo clicando nos botões:</p>
                 
                 <div class="flex flex-col sm:flex-row gap-4 mb-6">
                     <a href="https://github.com/Satsuoni/DeDRM_tools/releases/download/v10.0.18/DeDRM_tools.zip" target="_blank" class="flex-1 bg-blue-50 hover:bg-blue-100 text-blue-700 font-semibold py-3 px-4 rounded-xl border border-blue-200 text-center transition-all flex items-center justify-center group">
@@ -71,9 +80,9 @@
                     </a>
                 </div>
 
-                <p class="text-slate-600 mb-4 text-sm">Dentro do Calibre, instale-os em: <code>Preferências > Plugins > Carregar plugin de arquivo</code>.</p>
+                <p id="step1-footer" class="text-slate-600 mb-4 text-sm">Dentro do Calibre, instale-os em: Preferências > Plugins > Carregar plugin de arquivo.</p>
                 <div class="bg-slate-50 p-4 rounded-lg border border-slate-200 text-sm text-slate-500">
-                    <strong>Importante:</strong> Reinicie o Calibre após instalar para ativar as funções.
+                    <strong id="step1-note-bold">Importante:</strong> <span id="step1-note-text">Reinicie o Calibre após instalar para ativar as funções.</span>
                 </div>
             </div>
 
@@ -81,9 +90,18 @@
             <div class="step-card bg-white p-8 rounded-2xl shadow-sm border border-slate-100">
                 <div class="flex items-center mb-4">
                     <span class="bg-blue-600 text-white w-8 h-8 rounded-full flex items-center justify-center font-bold mr-4 text-sm">02</span>
-                    <h3 class="text-xl font-bold">Configuração do Desbloqueador</h3>
+                    <h3 id="step2-title" class="text-xl font-bold">Configuração do Desbloqueador</h3>
                 </div>
-                <p class="text-slate-600 mb-6 text-sm">Instale o Kindle para PC (versão oficial). Depois, copie o arquivo <code>KFXArchiver283.exe</code> (que está dentro da pasta DeDRM_tools no ZIP baixado) para esta pasta exata:</p>
+                <p id="step2-text" class="text-slate-600 mb-6 text-sm">Primeiro, instale a versão oficial do Kindle para PC através do link abaixo:</p>
+                
+                <div class="mb-6">
+                    <a id="btn-kindle-download" href="https://www.amazon.com/kindlepcdownload/?_encoding=UTF8" target="_blank" class="inline-flex items-center bg-orange-500 hover:bg-orange-600 text-white font-bold py-3 px-6 rounded-xl shadow-md transition-all group">
+                        <svg class="w-5 h-5 mr-3" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14h2v2h-2v-2zm0-10h2v8h-2V6z"/></svg>
+                        Baixar Kindle para PC (Oficial)
+                    </a>
+                </div>
+
+                <p id="step2-footer" class="text-slate-600 mb-6 text-sm">Depois, copie o arquivo KFXArchiver283.exe para esta pasta exata:</p>
                 <code class="block bg-slate-800 text-blue-300 p-3 rounded-lg text-xs overflow-x-auto break-all">
                     C:\Users\NOME_DE_USUARIO\AppData\Local\Amazon\Kindle\application
                 </code>
@@ -93,11 +111,11 @@
             <div class="step-card bg-white p-8 rounded-2xl shadow-sm border border-slate-100">
                 <div class="flex items-center mb-4">
                     <span class="bg-blue-600 text-white w-8 h-8 rounded-full flex items-center justify-center font-bold mr-4 text-sm">03</span>
-                    <h3 class="text-xl font-bold">Baixar os Livros no Computador</h3>
+                    <h3 id="step3-title" class="text-xl font-bold">Baixar os Livros no Computador</h3>
                 </div>
-                <p class="text-slate-600 mb-4">Abra o programa <strong>Kindle Desktop</strong>, faça login e <strong>clique duas vezes na capa do livro</strong> para garantir que o download seja concluído 100%.</p>
+                <p id="step3-text" class="text-slate-600 mb-4">Abra o programa Kindle Desktop, faça login e clique duas vezes na capa do livro para garantir que o download seja concluído 100%.</p>
                 <div class="bg-blue-50 p-4 rounded-lg border border-blue-200 text-sm text-blue-800 mb-4">
-                    <strong>Dica:</strong> Se o download falhar ou o arquivo ficar incompleto, a extração da chave no próximo passo não funcionará.
+                    <strong id="step3-tip-bold">Dica:</strong> <span id="step3-tip-text">Se o download falhar ou o arquivo ficar incompleto, a extração da chave no próximo passo não funcionará.</span>
                 </div>
                 <code class="block bg-slate-100 text-slate-600 p-2 rounded text-xs break-all">
                     C:\Users\NOME_DE_USUARIO\Documents\My Kindle Content
@@ -108,17 +126,17 @@
             <div class="step-card bg-white p-8 rounded-2xl shadow-sm border border-slate-100">
                 <div class="flex items-center mb-4">
                     <span class="bg-blue-600 text-white w-8 h-8 rounded-full flex items-center justify-center font-bold mr-4 text-sm">04</span>
-                    <h3 class="text-xl font-bold">Gerar a Chave de Desbloqueio</h3>
+                    <h3 id="step4-title" class="text-xl font-bold">Gerar a Chave de Desbloqueio</h3>
                 </div>
-                <p class="text-slate-600 mb-4">Primeiro, <strong>crie manualmente</strong> uma pasta chamada <code>kfxoutput</code> em <code>C:\Users\NOME_DE_USUARIO\</code>. Sem essa pasta, o comando falhará.</p>
-                <p class="text-slate-600 mb-4">Abra o Prompt de Comando (CMD) e cole o texto abaixo:</p>
+                <p id="step4-text1" class="text-slate-600 mb-4">Primeiro, crie manualmente uma pasta chamada kfxoutput em C:\Users\NOME_DE_USUARIO\. Sem essa pasta, o comando falhará.</p>
+                <p id="step4-text2" class="text-slate-600 mb-4">Abra o Prompt de Comando (CMD) e cole o texto abaixo:</p>
                 <div class="relative group">
                     <pre class="bg-slate-900 text-slate-300 p-4 rounded-xl text-xs overflow-x-auto break-all">C:\Users\NOME_DE_USUARIO\AppData\Local\Amazon\Kindle\application\KFXArchiver283.exe "C:\Users\NOME_DE_USUARIO\Documents\My Kindle Content" "C:\Users\NOME_DE_USUARIO\kfxoutput" kfxoutput.k4i</pre>
-                    <button onclick="copyToClipboard()" class="absolute top-3 right-3 bg-slate-700 hover:bg-slate-600 text-white px-3 py-1 rounded text-[10px]">COPIAR</button>
+                    <button id="btn-copy" onclick="copyToClipboard()" class="absolute top-3 right-3 bg-slate-700 hover:bg-slate-600 text-white px-3 py-1 rounded text-[10px]">COPIAR</button>
                 </div>
                 <div class="mt-4 p-4 bg-red-50 border-l-4 border-red-500 rounded-r-lg">
-                    <p class="text-sm text-red-700 font-bold">⚠️ ATENÇÃO:</p>
-                    <p class="text-sm text-red-600">Troque <span class="bg-red-200 px-1 rounded">NOME_DE_USUARIO</span> pelo seu nome real nas 3 ocorrências. Se o CMD mostrar "DRMION decrypted", a chave foi gerada com sucesso.</p>
+                    <p id="step4-warn-bold" class="text-sm text-red-700 font-bold">⚠️ ATENÇÃO:</p>
+                    <p id="step4-warn-text" class="text-sm text-red-600">Troque NOME_DE_USUARIO pelo seu nome real nas 3 ocorrências. Se o CMD mostrar "DRMION decrypted", a chave foi gerada com sucesso.</p>
                 </div>
             </div>
 
@@ -126,11 +144,11 @@
             <div class="step-card bg-white p-8 rounded-2xl shadow-sm border border-slate-100">
                 <div class="flex items-center mb-4">
                     <span class="bg-blue-600 text-white w-8 h-8 rounded-full flex items-center justify-center font-bold mr-4 text-sm">05</span>
-                    <h3 class="text-xl font-bold">Configurar a Chave no Calibre</h3>
+                    <h3 id="step5-title" class="text-xl font-bold">Configurar a Chave no Calibre</h3>
                 </div>
-                <p class="text-slate-600 mb-4 text-sm">Vá em <code>Preferências > Plugins > DeDRM > Personalizar Plugin</code>. Em "Kindle for Mac/PC ebooks", importe o arquivo <code>kfxoutput.k4i</code>.</p>
+                <p id="step5-text" class="text-slate-600 mb-4 text-sm">Vá em Preferências > Plugins > DeDRM > Personalizar Plugin. Em "Kindle for Mac/PC ebooks", importe o arquivo kfxoutput.k4i.</p>
                 <div class="bg-amber-50 p-4 rounded-lg border border-amber-200 text-sm text-amber-800">
-                    <strong>Importante:</strong> Sempre que baixar novos livros, é recomendável limpar a pasta <code>kfxoutput</code> e apagar o <code>.k4i</code> anterior antes de rodar o comando novamente.
+                    <strong id="step5-note-bold">Importante:</strong> <span id="step5-note-text">Sempre que baixar novos livros, é recomendável limpar a pasta kfxoutput e apagar o .k4i anterior antes de rodar o comando novamente.</span>
                 </div>
             </div>
 
@@ -138,57 +156,57 @@
             <div class="step-card bg-white p-8 rounded-2xl shadow-sm border border-slate-100">
                 <div class="flex items-center mb-4">
                     <span class="bg-blue-600 text-white w-8 h-8 rounded-full flex items-center justify-center font-bold mr-4 text-sm">06</span>
-                    <h3 class="text-xl font-bold">Importação e Conversão Final</h3>
+                    <h3 id="step6-title" class="text-xl font-bold">Importação e Conversão Final</h3>
                 </div>
-                <p class="text-slate-600 mb-4"><strong>Regra de Ouro:</strong> Nunca arraste arquivos <code>.azw</code> da pasta original "My Kindle Content". Você deve arrastar os arquivos gerados que estão na pasta de saída.</p>
+                <p id="step6-text-rule" class="text-slate-600 mb-4">Regra de Ouro: Nunca arraste arquivos .azw da pasta original "My Kindle Content". Você deve arrastar os arquivos gerados que estão na pasta de saída.</p>
                 
                 <ul class="space-y-4 text-sm">
                     <li class="flex items-start">
                         <span class="text-green-600 font-bold mr-2">✓</span>
-                        <p><strong>Livros Novos (KFX):</strong> Arraste o arquivo <code>kfx-zip</code> <strong>diretamente da pasta kfxoutput</strong> para a biblioteca do Calibre. Se ele virar "KFX" no Calibre (e não ficar como KFX-ZIP), deu certo.</p>
+                        <p id="step6-li1"><strong>Livros Novos (KFX):</strong> Arraste o arquivo kfx-zip diretamente da pasta kfxoutput para a biblioteca do Calibre. Se ele virar "KFX" no Calibre, deu certo.</p>
                     </li>
                     <li class="flex items-start">
                         <span class="text-blue-600 font-bold mr-2">i</span>
-                        <p><strong>Livros Antigos (KF8/Mobi):</strong> Se o livro for um formato antigo, você pode arrastar o arquivo <code>.azw</code> original, desde que a chave <code>.k4i</code> já esteja configurada no plugin.</p>
+                        <p id="step6-li2"><strong>Livros Antigos (KF8/Mobi):</strong> Se o livro for um formato antigo, você pode arrastar o arquivo .azw original, desde que a chave .k4i já esteja configurada no plugin.</p>
                     </li>
                 </ul>
 
-                <p class="mt-6 text-sm text-slate-600">Após o desbloqueio, use o botão <strong>"Converter livros"</strong> para gerar seu PDF ou EPUB.</p>
+                <p id="step6-footer" class="mt-6 text-sm text-slate-600">Após o desbloqueio, use o botão "Converter livros" para gerar seu PDF ou EPUB.</p>
             </div>
         </section>
 
         <!-- FAQ Table -->
         <section class="mb-16">
-            <h2 class="text-2xl font-bold text-slate-900 mb-6 border-b pb-2">Resolução de Erros</h2>
+            <h2 id="faq-title" class="text-2xl font-bold text-slate-900 mb-6 border-b pb-2">Resolução de Erros</h2>
             <div class="bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden">
                 <table class="w-full text-left text-sm">
                     <thead class="bg-slate-50 border-b border-slate-200">
                         <tr>
-                            <th class="px-6 py-4 font-bold text-slate-700">Erro / Sintoma</th>
-                            <th class="px-6 py-4 font-bold text-slate-700">Como Corrigir</th>
+                            <th id="th-error" class="px-6 py-4 font-bold text-slate-700">Erro / Sintoma</th>
+                            <th id="th-fix" class="px-6 py-4 font-bold text-slate-700">Como Corrigir</th>
                         </tr>
                     </thead>
                     <tbody class="divide-y divide-slate-100">
                         <tr>
                             <td class="px-6 py-4">
-                                <span class="font-bold block">"KFX-ZIP" no Calibre</span>
-                                <span class="text-slate-500 text-xs">Bloqueio ainda presente.</span>
+                                <span id="td-err1-title" class="font-bold block">"KFX-ZIP" no Calibre</span>
+                                <span id="td-err1-sub" class="text-slate-500 text-xs">Bloqueio ainda presente.</span>
                             </td>
-                            <td class="px-6 py-4 text-slate-600">Delete o livro do Calibre, limpe a pasta kfxoutput e repita os passos 4 e 5.</td>
+                            <td id="td-fix1" class="px-6 py-4 text-slate-600">Delete o livro do Calibre, limpe a pasta kfxoutput e repita os passos 4 e 5.</td>
                         </tr>
                         <tr>
                             <td class="px-6 py-4">
-                                <span class="font-bold block">"BookOpen error 14"</span>
-                                <span class="text-slate-500 text-xs">Arquivo corrompido ou antigo.</span>
+                                <span id="td-err2-title" class="font-bold block">"BookOpen error 14"</span>
+                                <span id="td-err2-sub" class="text-slate-500 text-xs">Arquivo corrompido ou antigo.</span>
                             </td>
-                            <td class="px-6 py-4 text-slate-600">Verifique se o livro foi totalmente baixado no app Kindle antes de extrair.</td>
+                            <td id="td-fix2" class="px-6 py-4 text-slate-600">Verifique se o livro foi totalmente baixado no app Kindle antes de extrair.</td>
                         </tr>
                         <tr>
                             <td class="px-6 py-4">
-                                <span class="font-bold block">"Access Violation" (CMD)</span>
-                                <span class="text-slate-500 text-xs">Conflito de versão.</span>
+                                <span id="td-err3-title" class="font-bold block">"Access Violation" (CMD)</span>
+                                <span id="td-err3-sub" class="text-slate-500 text-xs">Conflito de versão.</span>
                             </td>
-                            <td class="px-6 py-4 text-slate-600">Confirme se está usando exatamente a versão 2.8.3 do Kindle para PC.</td>
+                            <td id="td-fix3" class="px-6 py-4 text-slate-600">Confirme se está usando exatamente a versão 2.8.3 do Kindle para PC.</td>
                         </tr>
                     </tbody>
                 </table>
@@ -198,11 +216,11 @@
         <!-- Alternative -->
         <section class="bg-slate-900 text-white p-10 rounded-3xl shadow-2xl relative overflow-hidden">
             <div class="relative z-10">
-                <h2 class="text-2xl font-bold mb-4">Acha este processo muito difícil?</h2>
-                <p class="text-slate-400 mb-8 max-w-2xl">
-                    O <strong>Epubor Ultimate</strong> automatiza tudo isso. Ele detecta os livros e remove a proteção sem plugins manuais ou uso do Prompt de Comando.
+                <h2 id="alt-title" class="text-2xl font-bold mb-4">Acha este processo muito difícil?</h2>
+                <p id="alt-text" class="text-slate-400 mb-8 max-w-2xl">
+                    O Epubor Ultimate automatiza tudo isso. Ele detecta os livros e remove a proteção sem plugins manuais ou uso do Prompt de Comando.
                 </p>
-                <a href="https://www.epubor.com/ultimate.html" target="_blank" class="bg-blue-600 hover:bg-blue-500 text-white font-bold px-8 py-3 rounded-full transition-colors inline-block">
+                <a id="btn-alt" href="https://www.epubor.com/ultimate.html" target="_blank" class="bg-blue-600 hover:bg-blue-500 text-white font-bold px-8 py-3 rounded-full transition-colors inline-block">
                     Conhecer a Alternativa Automática
                 </a>
             </div>
@@ -212,11 +230,247 @@
     </main>
 
     <footer class="text-center py-10 text-slate-400 text-xs border-t border-slate-200">
-        <p>Baseado no tutorial original de Epubor.com. Guia técnico atualizado para 2026.</p>
+        <p id="footer-text">Baseado no tutorial original de Epubor.com. Guia técnico atualizado para 2026.</p>
     </footer>
 
     <script>
+        const translations = {
+            pt: {
+                pageTitle: "Como Converter Livros do Kindle para PDF ou EPUB - Guia 2026",
+                heroTitle: "Como Converter Livros do Kindle para PDF ou EPUB",
+                heroSubtitle: "Aprenda a remover a proteção (DRM) para ler seus livros em qualquer dispositivo",
+                labelUpdated: "Guia Atualizado:",
+                warningTitle: "Aviso de Uso Legal",
+                warningText: "Este processo destina-se apenas ao uso pessoal em livros que você possui legalmente. O objetivo é garantir que você possa ler seus arquivos em outros leitores ou aplicativos.",
+                introTitle: "Por que este guia é necessário?",
+                introText: "Os livros comprados na Amazon vêm com uma trava digital (DRM). Para transformá-los em PDF ou EPUB, precisamos de ferramentas especiais que \"desbloqueiam\" o arquivo. Este guia explica como usar os plugins gratuitos do Calibre para fazer isso em 2026, compatível com as versões 2.8.0 a 2.8.3 do Kindle para PC.",
+                stepsMainTitle: "Passo a Passo Detalhado",
+                step1Title: "Preparação das Ferramentas",
+                step1Text: "Você precisará do programa Calibre (v9.3+) instalado. Baixe os dois componentes abaixo clicando nos botões:",
+                step1Footer: "Dentro do Calibre, instale-os em: Preferências > Plugins > Carregar plugin de arquivo.",
+                step1NoteBold: "Importante:",
+                step1NoteText: "Reinicie o Calibre após instalar para ativar as funções.",
+                step2Title: "Configuração do Desbloqueador",
+                step2Text: "Primeiro, instale a versão oficial do Kindle para PC através do link abaixo:",
+                btnKindleDownload: "Baixar Kindle para PC (Oficial)",
+                step2Footer: "Depois, copie o arquivo KFXArchiver283.exe para esta pasta exata:",
+                step3Title: "Baixar os Livros no Computador",
+                step3Text: "Abra o programa Kindle Desktop, faça login e clique duas vezes na capa do livro para garantir que o download seja concluído 100%.",
+                step3TipBold: "Dica:",
+                step3TipText: "Se o download falhar ou o arquivo ficar incompleto, a extração da chave no próximo passo não funcionará.",
+                step4Title: "Gerar a Chave de Desbloqueio",
+                step4Text1: "Primeiro, crie manualmente uma pasta chamada kfxoutput em C:\\Users\\NOME_DE_USUARIO\\. Sem essa pasta, o comando falhará.",
+                step4Text2: "Abra o Prompt de Comando (CMD) e cole o texto abaixo:",
+                btnCopy: "COPIAR",
+                btnCopied: "COPIADO!",
+                step4WarnBold: "⚠️ ATENÇÃO:",
+                step4WarnText: "Troque NOME_DE_USUARIO pelo seu nome real nas 3 ocorrências. Se o CMD mostrar \"DRMION decrypted\", a chave foi gerada com sucesso.",
+                step5Title: "Configurar a Chave no Calibre",
+                step5Text: "Vá em Preferências > Plugins > DeDRM > Personalizar Plugin. Em \"Kindle for Mac/PC ebooks\", importe o arquivo kfxoutput.k4i.",
+                step5NoteBold: "Importante:",
+                step5NoteText: "Sempre que baixar novos livros, é recomendável limpar a pasta kfxoutput e apagar o .k4i anterior antes de rodar o comando novamente.",
+                step6Title: "Importação e Conversão Final",
+                step6TextRule: "Regra de Ouro: Nunca arraste arquivos .azw da pasta original \"My Kindle Content\". Você deve arrastar os arquivos gerados que estão na pasta de saída.",
+                step6Li1: "<strong>Livros Novos (KFX):</strong> Arraste o arquivo kfx-zip diretamente da pasta kfxoutput para a biblioteca do Calibre. Se ele virar \"KFX\" no Calibre, deu certo.",
+                step6Li2: "<strong>Livros Antigos (KF8/Mobi):</strong> Se o livro for um formato antigo, você pode arrastar o arquivo .azw original, desde que a chave .k4i já esteja configurada no plugin.",
+                step6Footer: "Após o desbloqueio, use o botão \"Converter livros\" para gerar seu PDF ou EPUB.",
+                faqTitle: "Resolução de Erros",
+                thError: "Erro / Sintoma",
+                thFix: "Como Corrigir",
+                tdErr1Title: "\"KFX-ZIP\" no Calibre",
+                tdErr1Sub: "Bloqueio ainda presente.",
+                tdFix1: "Delete o livro do Calibre, limpe a pasta kfxoutput e repita os passos 4 e 5.",
+                tdErr2Title: "\"BookOpen error 14\"",
+                tdErr2Sub: "Arquivo corrompido ou antigo.",
+                tdFix2: "Verifique se o livro foi totalmente baixado no app Kindle antes de extrair.",
+                tdErr3Title: "\"Access Violation\" (CMD)",
+                tdErr3Sub: "Conflito de versão.",
+                tdFix3: "Confirme se está usando exatamente a versão 2.8.3 do Kindle para PC.",
+                altTitle: "Acha este processo muito difícil?",
+                altText: "O Epubor Ultimate automatiza tudo isso. Ele detecta os livros e remove a proteção sem plugins manuais ou uso do Prompt de Comando.",
+                btnAlt: "Conhecer a Alternativa Automática",
+                footerText: "Baseado no tutorial original de Epubor.com. Guia técnico atualizado para 2026."
+            },
+            en: {
+                pageTitle: "How to Convert Kindle Books to PDF or EPUB - 2026 Guide",
+                heroTitle: "How to Convert Kindle Books to PDF or EPUB",
+                heroSubtitle: "Learn how to remove DRM protection to read your books on any device",
+                labelUpdated: "Guide Updated:",
+                warningTitle: "Legal Use Notice",
+                warningText: "This process is intended for personal use only on books you legally own. The goal is to ensure you can read your files on other readers or applications.",
+                introTitle: "Why is this guide necessary?",
+                introText: "Books purchased from Amazon come with a digital lock (DRM). To transform them into PDF or EPUB, we need special tools that \"unlock\" the file. This guide explains how to use free Calibre plugins to do this in 2026, compatible with Kindle for PC versions 2.8.0 to 2.8.3.",
+                stepsMainTitle: "Detailed Step-by-Step",
+                step1Title: "Tool Preparation",
+                step1Text: "You will need Calibre (v9.3+) installed. Download the two components below by clicking the buttons:",
+                step1Footer: "In Calibre, install them at: Preferences > Plugins > Load plugin from file.",
+                step1NoteBold: "Important:",
+                step1NoteText: "Restart Calibre after installing to activate the functions.",
+                step2Title: "Unlocker Configuration",
+                step2Text: "First, install the official Kindle for PC version using the link below:",
+                btnKindleDownload: "Download Kindle for PC (Official)",
+                step2Footer: "Then, copy the KFXArchiver283.exe file to this exact folder:",
+                step3Title: "Download Books to Computer",
+                step3Text: "Open the Kindle Desktop program, log in, and double-click the book cover to ensure the download is 100% complete.",
+                step3TipBold: "Tip:",
+                step3TipText: "If the download fails or the file is incomplete, the key extraction in the next step will not work.",
+                step4Title: "Generate the Unlock Key",
+                step4Text1: "First, manually create a folder named kfxoutput in C:\\Users\\USER_NAME\\. Without this folder, the command will fail.",
+                step4Text2: "Open Command Prompt (CMD) and paste the text below:",
+                btnCopy: "COPY",
+                btnCopied: "COPIED!",
+                step4WarnBold: "⚠️ ATTENTION:",
+                step4WarnText: "Replace USER_NAME with your real Windows username in all 3 occurrences. If CMD shows \"DRMION decrypted\", the key was successfully generated.",
+                step5Title: "Configure Key in Calibre",
+                step5Text: "Go to Preferences > Plugins > DeDRM > Customize Plugin. In \"Kindle for Mac/PC ebooks\", import the kfxoutput.k4i file.",
+                step5NoteBold: "Important:",
+                step5NoteText: "Whenever you download new books, it's recommended to clear the kfxoutput folder and delete the previous .k4i before running the command again.",
+                step6Title: "Final Import and Conversion",
+                step6TextRule: "Golden Rule: Never drag .azw files from the original \"My Kindle Content\" folder. You must drag the generated files from the output folder.",
+                step6Li1: "<strong>New Books (KFX):</strong> Drag the kfx-zip file directly from the kfxoutput folder to the Calibre library. If it turns into \"KFX\" in Calibre, it worked.",
+                step6Li2: "<strong>Old Books (KF8/Mobi):</strong> If the book is an old format, you can drag the original .azw file, provided the .k4i key is already configured in the plugin.",
+                step6Footer: "After unlocking, use the \"Convert books\" button to generate your PDF or EPUB.",
+                faqTitle: "Error Resolution",
+                thError: "Error / Symptom",
+                thFix: "How to Fix",
+                tdErr1Title: "\"KFX-ZIP\" in Calibre",
+                tdErr1Sub: "Lock still present.",
+                tdFix1: "Delete the book from Calibre, clear the kfxoutput folder, and repeat steps 4 and 5.",
+                tdErr2Title: "\"BookOpen error 14\"",
+                tdErr2Sub: "Corrupted or old file.",
+                tdFix2: "Check if the book was fully downloaded in the Kindle app before extracting.",
+                tdErr3Title: "\"Access Violation\" (CMD)",
+                tdErr3Sub: "Version conflict.",
+                tdFix3: "Confirm you are using exactly Kindle for PC version 2.8.3.",
+                altTitle: "Is this process too difficult?",
+                altText: "Epubor Ultimate automates all of this. It detects books and removes protection without manual plugins or Command Prompt usage.",
+                btnAlt: "Explore the Automatic Alternative",
+                footerText: "Based on the original tutorial from Epubor.com. Technical guide updated for 2026."
+            },
+            es: {
+                pageTitle: "Cómo Convertir Libros de Kindle a PDF o EPUB - Guia 2026",
+                heroTitle: "Cómo Convertir Libros de Kindle a PDF o EPUB",
+                heroSubtitle: "Aprenda a eliminar la protección (DRM) para leer sus libros en cualquier dispositivo",
+                labelUpdated: "Guía Actualizada:",
+                warningTitle: "Aviso de Uso Legal",
+                warningText: "Este proceso está destinado solo para uso personal en libros de los que usted es propietario legalmente. El objetivo es asegurar que pueda leer sus archivos en otros lectores o aplicaciones.",
+                introTitle: "¿Por qué es necesaria esta guía?",
+                introText: "Los libros comprados en Amazon vienen con un bloqueo digital (DRM). Para transformarlos a PDF o EPUB, necesitamos herramientas especiales que \"desbloquean\" el archivo. Esta guía explica cómo usar los plugins gratuitos de Calibre para hacerlo en 2026, compatible con las versiones 2.8.0 a 2.8.3 de Kindle para PC.",
+                stepsMainTitle: "Paso a Paso Detallado",
+                step1Title: "Preparación de Herramientas",
+                step1Text: "Necesitará tener instalado el programa Calibre (v9.3+). Descargue los dos componentes a continuación haciendo clic en los botones:",
+                step1Footer: "En Calibre, instálelos en: Preferencias > Plugins > Cargar plugin desde archivo.",
+                step1NoteBold: "Importante:",
+                step1NoteText: "Reinicie Calibre después de la instalación para activar las funciones.",
+                step2Title: "Configuración del Desbloqueador",
+                step2Text: "Primero, instale la versión oficial de Kindle para PC a través del siguiente enlace:",
+                btnKindleDownload: "Descargar Kindle para PC (Oficial)",
+                step2Footer: "Luego, copie el archivo KFXArchiver283.exe a esta carpeta exacta:",
+                step3Title: "Descargar los Libros al Ordenador",
+                step3Text: "Abra el programa Kindle Desktop, inicie sesión y haga doble clic en la portada del libro para asegurar que la descarga se complete al 100%.",
+                step3TipBold: "Consejo:",
+                step3TipText: "Si la descarga falla o el archivo está incompleto, la extracción de la clave en el siguiente paso no funcionará.",
+                step4Title: "Generar la Clave de Desbloqueo",
+                step4Text1: "Primero, cree manualmente una carpeta llamada kfxoutput en C:\\Users\\NOMBRE_DE_USUARIO\\. Sin esta carpeta, el comando fallará.",
+                step4Text2: "Abra el Símbolo del sistema (CMD) y pegue el texto a continuación:",
+                btnCopy: "COPIAR",
+                btnCopied: "¡COPIADO!",
+                step4WarnBold: "⚠️ ATENCIÓN:",
+                step4WarnText: "Cambie NOMBRE_DE_USUARIO por su nombre real de usuario de Windows en las 3 ocasiones. Si el CMD muestra \"DRMION decrypted\", la clave se generó con éxito.",
+                step5Title: "Configurar la Clave en Calibre",
+                step5Text: "Vaya a Preferencias > Plugins > DeDRM > Personalizar complemento. En \"Kindle for Mac/PC ebooks\", importe el archivo kfxoutput.k4i.",
+                step5NoteBold: "Importante:",
+                step5NoteText: "Siempre que descargue libros nuevos, se recomienda limpiar la carpeta kfxoutput y eliminar el .k4i anterior antes de ejecutar el comando nuevamente.",
+                step6Title: "Importación y Conversión Final",
+                step6TextRule: "Regla de Oro: Nunca arrastre archivos .azw de la carpeta original \"My Kindle Content\". Debe arrastrar los archivos generados que están en la carpeta de salida.",
+                step6Li1: "<strong>Libros Nuevos (KFX):</strong> Arraste el archivo kfx-zip directamente de la carpeta kfxoutput a la biblioteca de Calibre. Si se convierte en \"KFX\" en Calibre, funcionó.",
+                step6Li2: "<strong>Libros Antiguos (KF8/Mobi):</strong> Si el libro es un formato antiguo, puede arrastrar el archivo .azw original, siempre que la clave .k4i ya esteja configurada en el plugin.",
+                step6Footer: "Después del desbloqueo, use el botón \"Convertir libros\" para generar su PDF o EPUB.",
+                faqTitle: "Resolución de Erros",
+                thError: "Error / Síntoma",
+                thFix: "Cómo Corregir",
+                tdErr1Title: "\"KFX-ZIP\" en Calibre",
+                tdErr1Sub: "Bloqueo aún presente.",
+                tdFix1: "Elimine el libro de Calibre, limpie la carpeta kfxoutput y repita los pasos 4 e 5.",
+                tdErr2Title: "\"BookOpen error 14\"",
+                tdErr2Sub: "Archivo dañado o antiguo.",
+                tdFix2: "Verifique si el libro se descargó por completo en la aplicación Kindle antes de extraerlo.",
+                tdErr3Title: "\"Access Violation\" (CMD)",
+                tdErr3Sub: "Conflicto de versión.",
+                tdFix3: "Confirme que está usando exactamente la versión 2.8.3 de Kindle para PC.",
+                altTitle: "¿Este proceso le parece muy difícil?",
+                altText: "Epubor Ultimate automatiza todo esto. Detecta los libros y elimina la protección sin complementos manuales ni el uso del Símbolo del sistema.",
+                btnAlt: "Conocer la Alternativa Automática",
+                footerText: "Basado en el tutorial original de Epubor.com. Guía técnica actualizada para 2026."
+            }
+        };
+
+        function setLanguage(lang) {
+            const t = translations[lang];
+            
+            // Update Text Elements
+            document.getElementById('page-title').innerText = t.pageTitle;
+            document.getElementById('hero-title').innerText = t.heroTitle;
+            document.getElementById('hero-subtitle').innerText = t.heroSubtitle;
+            document.getElementById('label-updated').innerText = t.labelUpdated;
+            document.getElementById('warning-title').innerText = t.warningTitle;
+            document.getElementById('warning-text').innerText = t.warningText;
+            document.getElementById('intro-title').innerText = t.introTitle;
+            document.getElementById('intro-text').innerText = t.introText;
+            document.getElementById('steps-main-title').innerText = t.stepsMainTitle;
+            document.getElementById('step1-title').innerText = t.step1Title;
+            document.getElementById('step1-text').innerText = t.step1Text;
+            document.getElementById('step1-footer').innerText = t.step1Footer;
+            document.getElementById('step1-note-bold').innerText = t.step1NoteBold;
+            document.getElementById('step1-note-text').innerText = t.step1NoteText;
+            document.getElementById('step2-title').innerText = t.step2Title;
+            document.getElementById('step2-text').innerText = t.step2Text;
+            document.getElementById('btn-kindle-download').innerHTML = `<svg class="w-5 h-5 mr-3" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14h2v2h-2v-2zm0-10h2v8h-2V6z"/></svg>${t.btnKindleDownload}`;
+            document.getElementById('step2-footer').innerText = t.step2Footer;
+            document.getElementById('step3-title').innerText = t.step3Title;
+            document.getElementById('step3-text').innerText = t.step3Text;
+            document.getElementById('step3-tip-bold').innerText = t.step3TipBold;
+            document.getElementById('step3-tip-text').innerText = t.step3TipText;
+            document.getElementById('step4-title').innerText = t.step4Title;
+            document.getElementById('step4-text1').innerText = t.step4Text1;
+            document.getElementById('step4-text2').innerText = t.step4Text2;
+            document.getElementById('btn-copy').innerText = t.btnCopy;
+            document.getElementById('step4-warn-bold').innerText = t.step4WarnBold;
+            document.getElementById('step4-warn-text').innerText = t.step4WarnText;
+            document.getElementById('step5-title').innerText = t.step5Title;
+            document.getElementById('step5-text').innerText = t.step5Text;
+            document.getElementById('step5-note-bold').innerText = t.step5NoteBold;
+            document.getElementById('step5-note-text').innerText = t.step5NoteText;
+            document.getElementById('step6-title').innerText = t.step6Title;
+            document.getElementById('step6-text-rule').innerText = t.step6TextRule;
+            document.getElementById('step6-li1').innerHTML = t.step6Li1;
+            document.getElementById('step6-li2').innerHTML = t.step6Li2;
+            document.getElementById('step6-footer').innerText = t.step6Footer;
+            document.getElementById('faq-title').innerText = t.faqTitle;
+            document.getElementById('th-error').innerText = t.thError;
+            document.getElementById('th-fix').innerText = t.thFix;
+            document.getElementById('td-err1-title').innerText = t.tdErr1Title;
+            document.getElementById('td-err1-sub').innerText = t.tdErr1Sub;
+            document.getElementById('td-fix1').innerText = t.tdFix1;
+            document.getElementById('td-err2-title').innerText = t.tdErr2Title;
+            document.getElementById('td-err2-sub').innerText = t.tdErr2Sub;
+            document.getElementById('td-fix2').innerText = t.tdFix2;
+            document.getElementById('td-err3-title').innerText = t.tdErr3Title;
+            document.getElementById('td-err3-sub').innerText = t.tdErr3Sub;
+            document.getElementById('td-fix3').innerText = t.tdFix3;
+            document.getElementById('alt-title').innerText = t.altTitle;
+            document.getElementById('alt-text').innerText = t.altText;
+            document.getElementById('btn-alt').innerText = t.btnAlt;
+            document.getElementById('footer-text').innerText = t.footerText;
+
+            // Update UI Active State
+            document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
+            document.getElementById(`btn-${lang}`).classList.add('active');
+            document.documentElement.lang = lang === 'en' ? 'en' : (lang === 'es' ? 'es' : 'pt-BR');
+        }
+
         function copyToClipboard() {
+            const currentLang = document.documentElement.lang.startsWith('en') ? 'en' : (document.documentElement.lang.startsWith('es') ? 'es' : 'pt');
             const code = document.querySelector('pre').innerText;
             const el = document.createElement('textarea');
             el.value = code;
@@ -225,10 +479,13 @@
             document.execCommand('copy');
             document.body.removeChild(el);
             
-            const btn = document.querySelector('pre + button');
-            btn.innerText = 'COPIADO!';
-            setTimeout(() => btn.innerText = 'COPIAR', 2000);
+            const btn = document.getElementById('btn-copy');
+            btn.innerText = translations[currentLang].btnCopied;
+            setTimeout(() => btn.innerText = translations[currentLang].btnCopy, 2000);
         }
+
+        // Initialize with PT
+        window.onload = () => setLanguage('pt');
     </script>
 </body>
 </html>
