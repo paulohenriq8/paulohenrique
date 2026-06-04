@@ -12,6 +12,18 @@
         .step-card:hover { transform: translateY(-2px); transition: all 0.3s ease; }
         .lang-btn { transition: all 0.2s; filter: grayscale(100%); opacity: 0.6; }
         .lang-btn.active { filter: grayscale(0%); opacity: 1; transform: scale(1.1); }
+        .badge-2026 {
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(5px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            display: inline-block;
+            padding: 2px 12px;
+            border-radius: 9999px;
+            font-weight: 800;
+            font-size: 0.875rem;
+            margin-bottom: 1rem;
+            letter-spacing: 0.05em;
+        }
     </style>
 </head>
 <body class="bg-slate-50 text-slate-800">
@@ -26,6 +38,7 @@
     <!-- Hero Section -->
     <header class="gradient-bg text-white py-16 px-4 shadow-lg">
         <div class="max-w-4xl mx-auto text-center">
+            <div class="badge-2026">ATUALIZADO PARA 2026</div>
             <h1 id="hero-title" class="text-4xl md:text-5xl font-bold mb-4">Como Converter Livros do Kindle para PDF ou EPUB</h1>
             <p id="hero-subtitle" class="text-xl text-blue-100 opacity-90">Aprenda a remover a proteção (DRM) para ler seus livros em qualquer dispositivo</p>
             <div class="mt-8 inline-block bg-white/10 backdrop-blur-md rounded-full px-6 py-2 text-sm font-medium border border-white/20">
@@ -74,7 +87,7 @@
                         <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/></svg>
                         Plugin DeDRM (v10.0.18)
                     </a>
-                    <a href="https://www.mobileread.com/forums/attachment.php?attachmentid=222242&d=1775043228" target="_blank" class="flex-1 bg-slate-50 hover:bg-slate-100 text-slate-700 font-semibold py-3 px-4 rounded-xl border border-slate-200 text-center transition-all flex items-center justify-center group">
+                    <a href="https://www.mobileread.com/forums/attachment.php?attachmentid=223438&d=1779301078" target="_blank" class="flex-1 bg-slate-50 hover:bg-slate-100 text-slate-700 font-semibold py-3 px-4 rounded-xl border border-slate-200 text-center transition-all flex items-center justify-center group">
                         <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/></svg>
                         Plugin KFX Input (v2.30)
                     </a>
@@ -128,7 +141,7 @@
                     <span class="bg-blue-600 text-white w-8 h-8 rounded-full flex items-center justify-center font-bold mr-4 text-sm">04</span>
                     <h3 id="step4-title" class="text-xl font-bold">Gerar a Chave de Desbloqueio</h3>
                 </div>
-                <p id="step4-text1" class="text-slate-600 mb-4">Primeiro, crie manualmente uma pasta chamada kfxoutput em C:\Users\NOME_DE_USUARIO\. Sem essa pasta, o comando falhará.</p>
+                <p id="step4-text1" class="text-slate-600 mb-4">Primeiro, crie manualmente uma pasta chamada kfxoutput em C:\\Users\\NOME_DE_USUARIO\\. Sem essa pasta, o comando falhará.</p>
                 <p id="step4-text2" class="text-slate-600 mb-4">Abra o Prompt de Comando (CMD) e cole o texto abaixo:</p>
                 <div class="relative group">
                     <pre class="bg-slate-900 text-slate-300 p-4 rounded-xl text-xs overflow-x-auto break-all">C:\Users\NOME_DE_USUARIO\AppData\Local\Amazon\Kindle\application\KFXArchiver283.exe "C:\Users\NOME_DE_USUARIO\Documents\My Kindle Content" "C:\Users\NOME_DE_USUARIO\kfxoutput" kfxoutput.k4i</pre>
@@ -240,6 +253,7 @@
                 heroTitle: "Como Converter Livros do Kindle para PDF ou EPUB",
                 heroSubtitle: "Aprenda a remover a proteção (DRM) para ler seus livros em qualquer dispositivo",
                 labelUpdated: "Guia Atualizado:",
+                label2026: "ATUALIZADO PARA 2026",
                 warningTitle: "Aviso de Uso Legal",
                 warningText: "Este processo destina-se apenas ao uso pessoal em livros que você possui legalmente. O objetivo é garantir que você possa ler seus arquivos em outros leitores ou aplicativos.",
                 introTitle: "Por que este guia é necessário?",
@@ -296,6 +310,7 @@
                 heroTitle: "How to Convert Kindle Books to PDF or EPUB",
                 heroSubtitle: "Learn how to remove DRM protection to read your books on any device",
                 labelUpdated: "Guide Updated:",
+                label2026: "UPDATED FOR 2026",
                 warningTitle: "Legal Use Notice",
                 warningText: "This process is intended for personal use only on books you legally own. The goal is to ensure you can read your files on other readers or applications.",
                 introTitle: "Why is this guide necessary?",
@@ -352,10 +367,11 @@
                 heroTitle: "Cómo Convertir Libros de Kindle a PDF o EPUB",
                 heroSubtitle: "Aprenda a eliminar la protección (DRM) para leer sus libros en cualquier dispositivo",
                 labelUpdated: "Guía Actualizada:",
+                label2026: "ACTUALIZADO PARA 2026",
                 warningTitle: "Aviso de Uso Legal",
                 warningText: "Este proceso está destinado solo para uso personal en libros de los que usted es propietario legalmente. El objetivo es asegurar que pueda leer sus archivos en otros lectores o aplicaciones.",
                 introTitle: "¿Por qué es necesaria esta guía?",
-                introText: "Los libros comprados en Amazon vienen con un bloqueo digital (DRM). Para transformarlos a PDF o EPUB, necesitamos herramientas especiales que \"desbloquean\" el archivo. Esta guía explica cómo usar los plugins gratuitos de Calibre para hacerlo en 2026, compatible con las versiones 2.8.0 a 2.8.3 de Kindle para PC.",
+                introText: "Los libros comprados en Amazon vienen con un bloqueo digital (DRM). Para transformarlos a PDF o EPUB, necesitamos herramientas especiales que \"desbloquean\" el archivo. Esta guía explica como usar os plugins gratuitos de Calibre para hacerlo en 2026, compatible con las versiones 2.8.0 a 2.8.3 de Kindle para PC.",
                 stepsMainTitle: "Paso a Paso Detallado",
                 step1Title: "Preparación de Herramientas",
                 step1Text: "Necesitará tener instalado el programa Calibre (v9.3+). Descargue los dos componentes a continuación haciendo clic en los botones:",
@@ -375,22 +391,22 @@
                 step4Text2: "Abra el Símbolo del sistema (CMD) y pegue el texto a continuación:",
                 btnCopy: "COPIAR",
                 btnCopied: "¡COPIADO!",
-                step4WarnBold: "⚠️ ATENCIÓN:",
+                step4WarnBold: "⚠️ ATENÇÃO:",
                 step4WarnText: "Cambie NOMBRE_DE_USUARIO por su nombre real de usuario de Windows en las 3 ocasiones. Si el CMD muestra \"DRMION decrypted\", la clave se generó con éxito.",
                 step5Title: "Configurar la Clave en Calibre",
                 step5Text: "Vaya a Preferencias > Plugins > DeDRM > Personalizar complemento. En \"Kindle for Mac/PC ebooks\", importe el archivo kfxoutput.k4i.",
                 step5NoteBold: "Importante:",
                 step5NoteText: "Siempre que descargue libros nuevos, se recomienda limpiar la carpeta kfxoutput y eliminar el .k4i anterior antes de ejecutar el comando nuevamente.",
-                step6Title: "Importación y Conversión Final",
+                step6Title: "Importación e Conversión Final",
                 step6TextRule: "Regla de Oro: Nunca arrastre archivos .azw de la carpeta original \"My Kindle Content\". Debe arrastrar los archivos generados que están en la carpeta de salida.",
                 step6Li1: "<strong>Libros Nuevos (KFX):</strong> Arraste el archivo kfx-zip directamente de la carpeta kfxoutput a la biblioteca de Calibre. Si se convierte en \"KFX\" en Calibre, funcionó.",
-                step6Li2: "<strong>Libros Antiguos (KF8/Mobi):</strong> Si el libro es un formato antiguo, puede arrastrar el archivo .azw original, siempre que la clave .k4i ya esteja configurada en el plugin.",
+                step6Li2: "<strong>Libros Antiguos (KF8/Mobi):</strong> Si el livro es un formato antiguo, puede arrastrar el arquivo .azw original, siempre que la chave .k4i ya esteja configurada en el plugin.",
                 step6Footer: "Después del desbloqueo, use el botón \"Convertir libros\" para generar su PDF o EPUB.",
                 faqTitle: "Resolución de Erros",
                 thError: "Error / Síntoma",
                 thFix: "Cómo Corregir",
                 tdErr1Title: "\"KFX-ZIP\" en Calibre",
-                tdErr1Sub: "Bloqueo aún presente.",
+                tdErr1Sub: "Bloqueio aún presente.",
                 tdFix1: "Elimine el libro de Calibre, limpie la carpeta kfxoutput y repita los pasos 4 e 5.",
                 tdErr2Title: "\"BookOpen error 14\"",
                 tdErr2Sub: "Archivo dañado o antiguo.",
@@ -401,7 +417,7 @@
                 altTitle: "¿Este proceso le parece muy difícil?",
                 altText: "Epubor Ultimate automatiza todo esto. Detecta los libros y elimina la protección sin complementos manuales ni el uso del Símbolo del sistema.",
                 btnAlt: "Conocer la Alternativa Automática",
-                footerText: "Basado en el tutorial original de Epubor.com. Guía técnica actualizada para 2026."
+                footerText: "Basado en el tutorial original de Epubor.com. Guia técnica actualizada para 2026."
             }
         };
 
@@ -413,6 +429,7 @@
             document.getElementById('hero-title').innerText = t.heroTitle;
             document.getElementById('hero-subtitle').innerText = t.heroSubtitle;
             document.getElementById('label-updated').innerText = t.labelUpdated;
+            document.querySelector('.badge-2026').innerText = t.label2026;
             document.getElementById('warning-title').innerText = t.warningTitle;
             document.getElementById('warning-text').innerText = t.warningText;
             document.getElementById('intro-title').innerText = t.introTitle;
