@@ -15,6 +15,35 @@
       font-family: 'JetBrains Mono', monospace;
     }
   </style>
+  <script>
+    async function downloadKfxPlugin(e) {
+      e.preventDefault();
+      const url = 'https://plugins.calibre-ebook.com/291290.zip';
+      const filename = 'KFX Input.zip';
+      
+      try {
+        const response = await fetch(url);
+        if (!response.ok) throw new Error('CORS or network issue');
+        const blob = await response.blob();
+        const blobUrl = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = blobUrl;
+        a.download = filename;
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        setTimeout(() => URL.revokeObjectURL(blobUrl), 5000);
+      } catch (err) {
+        // Fallback para download direto caso a política de CORS do servidor bloqueie a captura do Blob
+        const a = document.createElement('a');
+        a.href = url;
+        a.target = '_blank';
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+      }
+    }
+  </script>
 </head>
 <body class="bg-slate-50 text-slate-800 antialiased min-h-screen flex flex-col">
 
@@ -113,7 +142,7 @@
           <div class="flex-1">
             <p class="text-slate-800 font-medium text-sm">Baixe a versão mais recente do DeDRM Tools</p>
             <p class="text-xs text-slate-500 mt-1">
-              Acesse o repositório oficial de ferramentas DeDRM, baixe o arquivo <code class="bg-slate-100 px-1 py-0.5 rounded border text-slate-700">DeDRM_tools.zip</code> e descompacte seu conteúdo em uma pasta local.
+              Acesse o repositório oficial de ferramentas DeDRM, baixe o arquivo <a href="https://github.com/Satsuoni/DeDRM_tools/tags" target="_blank" rel="noopener noreferrer" class="text-indigo-600 hover:text-indigo-800 font-medium underline inline-flex items-center gap-1"><code class="bg-slate-100 px-1 py-0.5 rounded border text-slate-700 hover:bg-slate-200 transition-colors">DeDRM_tools.zip</code> <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i></a> e descompacte seu conteúdo em uma pasta local.
             </p>
           </div>
         </div>
@@ -170,22 +199,22 @@
             <tbody class="divide-y divide-slate-200 bg-white text-xs">
               <tr>
                 <td class="px-4 py-3 font-medium text-slate-900">Versão 1.0.15230</td>
-                <td class="px-4 py-3">DeDRM v10.0.21 + KFX Input v2.34.0</td>
+                <td class="px-4 py-3">DeDRM v10.0.21 + <a href="https://plugins.calibre-ebook.com/291290.zip" onclick="downloadKfxPlugin(event)" class="text-indigo-600 hover:text-indigo-800 font-medium underline">KFX Input v2.34.2</a></td>
                 <td class="px-4 py-3 font-mono">MSIXKFXArchiverMobi1_15230.exe</td>
               </tr>
               <tr>
                 <td class="px-4 py-3 font-medium text-slate-900">Versão 1.0.18320</td>
-                <td class="px-4 py-3">DeDRM v10.0.26 + KFX Input v2.34.0</td>
+                <td class="px-4 py-3">DeDRM v10.0.26 + <a href="https://plugins.calibre-ebook.com/291290.zip" onclick="downloadKfxPlugin(event)" class="text-indigo-600 hover:text-indigo-800 font-medium underline">KFX Input v2.34.2</a></td>
                 <td class="px-4 py-3 font-mono">MSIXKFXArchiverMobi1_18320.exe</td>
               </tr>
               <tr>
                 <td class="px-4 py-3 font-medium text-slate-900">Versão 1.0.22920</td>
-                <td class="px-4 py-3">DeDRM v10.0.30 + KFX Input v2.34.0</td>
+                <td class="px-4 py-3">DeDRM v10.0.30 + <a href="https://plugins.calibre-ebook.com/291290.zip" onclick="downloadKfxPlugin(event)" class="text-indigo-600 hover:text-indigo-800 font-medium underline">KFX Input v2.34.2</a></td>
                 <td class="px-4 py-3 font-mono">MSIXKFXArchiverMobi1_22920.exe</td>
               </tr>
               <tr class="bg-indigo-50/40">
                 <td class="px-4 py-3 font-bold text-indigo-900">Versão 1.0.23620 (Mais Recente)</td>
-                <td class="px-4 py-3 font-medium text-indigo-900">DeDRM v10.0.31 + KFX Input v2.34.0</td>
+                <td class="px-4 py-3 font-medium text-indigo-900">DeDRM v10.0.31 + <a href="https://plugins.calibre-ebook.com/291290.zip" onclick="downloadKfxPlugin(event)" class="text-indigo-600 hover:text-indigo-800 font-medium underline font-bold">KFX Input v2.34.2</a></td>
                 <td class="px-4 py-3 font-mono font-bold text-indigo-900">MSIXKFXArchiverMobi1_23620.exe</td>
               </tr>
             </tbody>
@@ -212,7 +241,12 @@
           <h3 class="font-bold text-slate-900 text-base mb-2">1. Preparar o Calibre e os Plugins</h3>
           <ul class="list-disc list-inside space-y-1.5 text-xs text-slate-600">
             <li>Instale a versão mais recente do Calibre.</li>
-            <li>Baixe e instale o plugin <strong>KFX Input v2.34.0</strong> no Calibre.</li>
+            <li>
+              Baixe e instale o plugin <a href="https://plugins.calibre-ebook.com/291290.zip" onclick="downloadKfxPlugin(event)" class="text-indigo-600 hover:text-indigo-800 font-medium underline inline-flex items-center gap-1"><strong>KFX Input v2.34.2</strong> <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i></a> no Calibre.
+              <span class="block mt-1 text-[11px] text-amber-700 bg-amber-50 border border-amber-200 p-1.5 rounded">
+                <i class="fa-solid fa-circle-info"></i> <strong>Nota:</strong> Se o download for salvo como <code>291290.zip</code> devido à segurança do seu navegador, renomeie o arquivo baixado para <code>KFX Input.zip</code>.
+              </span>
+            </li>
             <li>Adicione o arquivo <strong>DeDRM_plugin.zip</strong> nas preferências de plugins do Calibre.</li>
           </ul>
         </div>
