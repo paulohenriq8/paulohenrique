@@ -1,0 +1,541 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tutorial Keep-Alive: GLOBO Linguist Dashboard</title>
+  
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Google Fonts: Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  
+  <!-- FontAwesome 6 for crisp icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+
+  <!-- Tailwind Custom Configuration -->
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+            mono: ['"JetBrains Mono"', 'monospace'],
+          },
+          colors: {
+            brand: {
+              50: '#eef2ff',
+              100: '#e0e7ff',
+              500: '#6366f1',
+              600: '#4f46e5',
+              700: '#4338ca',
+            },
+            globo: {
+              blue: '#0284c7',
+              dark: '#0f172a'
+            }
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    pre code {
+      tab-size: 2;
+    }
+    .custom-scrollbar::-webkit-scrollbar {
+      height: 8px;
+      width: 8px;
+    }
+    .custom-scrollbar::-webkit-scrollbar-track {
+      background: #1e293b;
+    }
+    .custom-scrollbar::-webkit-scrollbar-thumb {
+      background: #475569;
+      border-radius: 4px;
+    }
+    .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+      background: #64748b;
+    }
+  </style>
+</head>
+
+<body class="bg-slate-900 text-slate-100 font-sans antialiased selection:bg-indigo-500 selection:text-white min-h-screen">
+
+  <!-- Top Navigation Bar -->
+  <header class="sticky top-0 z-50 backdrop-blur-md bg-slate-900/80 border-b border-slate-800">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+      <div class="flex items-center space-x-3">
+        <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-sky-500 to-indigo-600 flex items-center justify-center shadow-lg shadow-indigo-500/20 text-white font-bold text-lg">
+          <i class="fa-solid fa-headset"></i>
+        </div>
+        <div>
+          <span class="font-bold text-base sm:text-lg tracking-tight text-white flex items-center gap-2">
+            GLOBO <span class="text-xs px-2 py-0.5 rounded-full bg-sky-500/20 text-sky-400 font-semibold border border-sky-500/30">OPI & VRI</span>
+          </span>
+          <p class="text-xs text-slate-400 hidden sm:block">Guia de Manutenção de Sessão Ativa</p>
+        </div>
+      </div>
+
+      <div class="flex items-center space-x-3">
+        <button onclick="shareWhatsApp()" class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-lg bg-emerald-600/90 hover:bg-emerald-500 text-white text-xs sm:text-sm font-medium transition shadow-sm hover:shadow-emerald-500/25">
+          <i class="fa-brands fa-whatsapp text-base"></i>
+          <span>Compartilhar</span>
+        </button>
+        <button onclick="scrollToStep('script-section')" class="hidden sm:inline-flex items-center gap-2 px-3.5 py-1.5 rounded-lg bg-indigo-600 hover:bg-indigo-500 text-white text-xs sm:text-sm font-medium transition">
+          <i class="fa-solid fa-code"></i>
+          <span>Copiar Script</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="relative overflow-hidden pt-10 pb-12 border-b border-slate-800 bg-gradient-to-b from-slate-900 via-slate-900/90 to-slate-950">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 text-center">
+      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-indigo-500/10 border border-indigo-500/30 text-indigo-300 text-xs font-semibold mb-6">
+        <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+        Sem F5 • Sem Queda de Chamadas • 100% Seguro
+      </div>
+
+      <h1 class="text-3xl sm:text-4xl md:text-5xl font-extrabold text-white tracking-tight leading-tight mb-4">
+        Evite a Desconexão por Inatividade no <span class="text-transparent bg-clip-text bg-gradient-to-r from-sky-400 to-indigo-400">GLOBO Dashboard</span>
+      </h1>
+      
+      <p class="text-base sm:text-lg text-slate-300 max-w-2xl mx-auto mb-8 font-normal leading-relaxed">
+        Tutorial passo a passo para manter seu status disponível na fila de interpretação OPI/VRI sem precisar reiniciar ou mexer manualmente no computador.
+      </p>
+
+      <!-- Quick Action Cards -->
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 max-w-3xl mx-auto text-left">
+        <div class="p-3.5 rounded-xl bg-slate-800/60 border border-slate-700/60 flex items-start space-x-3">
+          <div class="p-2 rounded-lg bg-sky-500/10 text-sky-400 shrink-0">
+            <i class="fa-solid fa-ban text-sm"></i>
+          </div>
+          <div>
+            <h4 class="text-xs font-semibold text-white">Sem Recarregar a Tela</h4>
+            <p class="text-xs text-slate-400 mt-0.5">Não quebra a conexão WebRTC de áudio e vídeo.</p>
+          </div>
+        </div>
+
+        <div class="p-3.5 rounded-xl bg-slate-800/60 border border-slate-700/60 flex items-start space-x-3">
+          <div class="p-2 rounded-lg bg-emerald-500/10 text-emerald-400 shrink-0">
+            <i class="fa-solid fa-shield-halved text-sm"></i>
+          </div>
+          <div>
+            <h4 class="text-xs font-semibold text-white">100% no Navegador</h4>
+            <p class="text-xs text-slate-400 mt-0.5">Roda só na aba da GLOBO e sem programas pesados.</p>
+          </div>
+        </div>
+
+        <div class="p-3.5 rounded-xl bg-slate-800/60 border border-slate-700/60 flex items-start space-x-3">
+          <div class="p-2 rounded-lg bg-indigo-500/10 text-indigo-400 shrink-0">
+            <i class="fa-solid fa-stopwatch text-sm"></i>
+          </div>
+          <div>
+            <h4 class="text-xs font-semibold text-white">Sinal a cada 45s</h4>
+            <p class="text-xs text-slate-400 mt-0.5">Simula micro-movimentos sem travar o ponteiro.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <main class="max-w-4xl mx-auto px-4 sm:px-6 py-12 space-y-12">
+
+    <!-- Step 1: Install Tampermonkey -->
+    <div class="bg-slate-800/40 border border-slate-700/80 rounded-2xl p-6 sm:p-8 relative overflow-hidden shadow-xl">
+      <div class="flex items-center gap-3 mb-4">
+        <span class="flex items-center justify-center w-8 h-8 rounded-lg bg-sky-500/20 text-sky-400 font-mono font-bold text-sm border border-sky-500/30">01</span>
+        <h2 class="text-xl sm:text-2xl font-bold text-white">Instalar a extensão Tampermonkey</h2>
+      </div>
+
+      <p class="text-slate-300 text-sm leading-relaxed mb-6">
+        O <strong>Tampermonkey</strong> é um gerenciador de scripts para navegadores seguro e amplamente utilizado no mundo inteiro. Escolha o seu navegador abaixo e instale a extensão oficial:
+      </p>
+
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+        <!-- Chrome -->
+        <a href="https://chromewebstore.google.com/detail/tampermonkey/dhdgffkkebhmkfjojejmpbldmpobfkfo" target="_blank" rel="noopener noreferrer" class="flex items-center justify-between p-3.5 rounded-xl bg-slate-900/80 border border-slate-700 hover:border-sky-500/80 hover:bg-slate-800 transition group">
+          <div class="flex items-center space-x-3">
+            <i class="fa-brands fa-chrome text-xl text-amber-400 group-hover:scale-110 transition-transform"></i>
+            <span class="text-sm font-medium text-slate-200">Google Chrome</span>
+          </div>
+          <i class="fa-solid fa-arrow-up-right-from-square text-xs text-slate-400 group-hover:text-white"></i>
+        </a>
+
+        <!-- Edge -->
+        <a href="https://microsoftedge.microsoft.com/addons/detail/tampermonkey/iikmkjmpaadaobahmlepeloendndfphd" target="_blank" rel="noopener noreferrer" class="flex items-center justify-between p-3.5 rounded-xl bg-slate-900/80 border border-slate-700 hover:border-sky-500/80 hover:bg-slate-800 transition group">
+          <div class="flex items-center space-x-3">
+            <i class="fa-brands fa-edge text-xl text-sky-400 group-hover:scale-110 transition-transform"></i>
+            <span class="text-sm font-medium text-slate-200">Microsoft Edge</span>
+          </div>
+          <i class="fa-solid fa-arrow-up-right-from-square text-xs text-slate-400 group-hover:text-white"></i>
+        </a>
+
+        <!-- Firefox -->
+        <a href="https://addons.mozilla.org/pt-BR/firefox/addon/tampermonkey/" target="_blank" rel="noopener noreferrer" class="flex items-center justify-between p-3.5 rounded-xl bg-slate-900/80 border border-slate-700 hover:border-sky-500/80 hover:bg-slate-800 transition group">
+          <div class="flex items-center space-x-3">
+            <i class="fa-brands fa-firefox text-xl text-orange-500 group-hover:scale-110 transition-transform"></i>
+            <span class="text-sm font-medium text-slate-200">Mozilla Firefox</span>
+          </div>
+          <i class="fa-solid fa-arrow-up-right-from-square text-xs text-slate-400 group-hover:text-white"></i>
+        </a>
+      </div>
+
+      <div class="mt-4 p-3 rounded-lg bg-sky-950/30 border border-sky-900/40 text-sky-300 text-xs flex items-center gap-2">
+        <i class="fa-solid fa-thumbtack text-sky-400"></i>
+        <span><strong>Dica:</strong> Lembre-se de clicar no ícone de "quebra-cabeça" do Chrome e fixar o Tampermonkey na barra superior para vê-lo sempre.</span>
+      </div>
+    </div>
+
+    <!-- Step 2: Create new script -->
+    <div class="bg-slate-800/40 border border-slate-700/80 rounded-2xl p-6 sm:p-8 shadow-xl">
+      <div class="flex items-center gap-3 mb-4">
+        <span class="flex items-center justify-center w-8 h-8 rounded-lg bg-sky-500/20 text-sky-400 font-mono font-bold text-sm border border-sky-500/30">02</span>
+        <h2 class="text-xl sm:text-2xl font-bold text-white">Criar um Novo Script</h2>
+      </div>
+
+      <p class="text-slate-300 text-sm leading-relaxed mb-4">
+        Abra as opções da extensão para adicionar o comando customizado:
+      </p>
+
+      <ol class="space-y-3 text-sm text-slate-300 list-decimal list-inside bg-slate-900/50 p-4 rounded-xl border border-slate-800">
+        <li>Clique no ícone preto do <strong>Tampermonkey</strong> no topo do navegador.</li>
+        <li>Clique na opção <strong>"Criar novo script..."</strong> (ou <em>"Create a new script"</em>).</li>
+        <li>Uma janela preta de editor de código se abrirá. <strong>Selecione todo o texto de exemplo e APAGUE tudo</strong> até a tela ficar em branco.</li>
+      </ol>
+    </div>
+
+    <!-- Step 3: Copy & Paste the Script -->
+    <div id="script-section" class="bg-slate-800/40 border border-indigo-500/40 rounded-2xl p-6 sm:p-8 shadow-2xl relative">
+      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-4">
+        <div class="flex items-center gap-3">
+          <span class="flex items-center justify-center w-8 h-8 rounded-lg bg-indigo-500/20 text-indigo-400 font-mono font-bold text-sm border border-indigo-500/30">03</span>
+          <h2 class="text-xl sm:text-2xl font-bold text-white">Copiar e Colar o Código</h2>
+        </div>
+
+        <button id="copy-btn" onclick="copyCode()" class="inline-flex items-center justify-center gap-2 px-4 py-2 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white font-semibold text-sm transition shadow-lg shadow-indigo-600/30 active:scale-95">
+          <i class="fa-solid fa-copy"></i>
+          <span id="copy-btn-text">Copiar Código Completo</span>
+        </button>
+      </div>
+
+      <p class="text-slate-300 text-sm leading-relaxed mb-4">
+        Copie o bloco de código abaixo e cole no editor do Tampermonkey que você acabou de limpar:
+      </p>
+
+      <!-- Code Container -->
+      <div class="relative rounded-xl overflow-hidden border border-slate-700 bg-slate-950 font-mono text-xs sm:text-sm">
+        <div class="flex items-center justify-between px-4 py-2.5 bg-slate-900/90 border-b border-slate-800 text-slate-400">
+          <span class="flex items-center gap-2">
+            <span class="w-3 h-3 rounded-full bg-red-500/80 inline-block"></span>
+            <span class="w-3 h-3 rounded-full bg-amber-500/80 inline-block"></span>
+            <span class="w-3 h-3 rounded-full bg-emerald-500/80 inline-block"></span>
+            <span class="ml-2 text-xs font-mono text-slate-400">globo_keepalive.js</span>
+          </span>
+          <span class="text-xs text-indigo-400 font-sans font-semibold">Destino: globohq.com</span>
+        </div>
+
+        <pre class="p-4 overflow-x-auto text-slate-200 custom-scrollbar leading-relaxed"><code id="script-code">// ==UserScript==
+// @name         Keep Alive GLOBO Linguist Dashboard
+// @namespace    http://tampermonkey.net/
+// @version      1.1
+// @description  Evita desconexão por inatividade no Linguist Dashboard da GLOBO
+// @match        https://globohq.com/linguist_dashboard/*
+// @grant        none
+// ==/UserScript==
+
+(function() {
+    'use strict';
+
+    // Dispara a cada 45 segundos para manter a sessão ativa
+    setInterval(() => {
+        // Simula micro-movimento do mouse (não interfere na sua mira/cliques)
+        const evt = new MouseEvent('mousemove', {
+            view: window,
+            bubbles: true,
+            cancelable: true,
+            clientX: Math.floor(Math.random() * 200),
+            clientY: Math.floor(Math.random() * 200)
+        });
+        document.dispatchEvent(evt);
+
+        // Garante foco na janela do navegador
+        window.dispatchEvent(new Event('focus'));
+
+        // Registro silencioso de atividade
+        console.log('[GLOBO Keep-Alive] Atividade simulada com sucesso:', new Date().toLocaleTimeString());
+    }, 45000);
+})();</code></pre>
+      </div>
+    </div>
+
+    <!-- Step 4: Save & Reload -->
+    <div class="bg-slate-800/40 border border-slate-700/80 rounded-2xl p-6 sm:p-8 shadow-xl">
+      <div class="flex items-center gap-3 mb-4">
+        <span class="flex items-center justify-center w-8 h-8 rounded-lg bg-sky-500/20 text-sky-400 font-mono font-bold text-sm border border-sky-500/30">04</span>
+        <h2 class="text-xl sm:text-2xl font-bold text-white">Salvar e Recarregar a Plataforma</h2>
+      </div>
+
+      <div class="space-y-4 text-sm text-slate-300">
+        <div class="flex items-start gap-3 p-3.5 rounded-xl bg-slate-900/60 border border-slate-800">
+          <div class="p-2 rounded-lg bg-indigo-500/20 text-indigo-400 mt-0.5">
+            <i class="fa-solid fa-floppy-disk"></i>
+          </div>
+          <div>
+            <strong class="text-white">1. Salve o Script:</strong>
+            <p class="text-slate-400 mt-1">No editor do Tampermonkey, vá no menu <strong>Arquivo (File) > Salvar (Save)</strong> ou simplesmente aperte <kbd class="px-2 py-0.5 rounded bg-slate-800 border border-slate-700 font-mono text-xs text-white">Ctrl + S</kbd>.</p>
+          </div>
+        </div>
+
+        <div class="flex items-start gap-3 p-3.5 rounded-xl bg-slate-900/60 border border-slate-800">
+          <div class="p-2 rounded-lg bg-sky-500/20 text-sky-400 mt-0.5">
+            <i class="fa-solid fa-rotate-right"></i>
+          </div>
+          <div>
+            <strong class="text-white">2. Recarregue a Plataforma GLOBO:</strong>
+            <p class="text-slate-400 mt-1">Abra a sua aba do <code>https://globohq.com/linguist_dashboard/index</code> e pressione <kbd class="px-2 py-0.5 rounded bg-slate-800 border border-slate-700 font-mono text-xs text-white">F5</kbd> uma única vez para carregar o script.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Step 5: Verification & Troubleshooting (The Red 'X' and Number '1') -->
+    <div class="bg-gradient-to-br from-slate-900 via-slate-800/80 to-slate-900 border border-amber-500/30 rounded-2xl p-6 sm:p-8 shadow-xl">
+      <div class="flex items-center gap-3 mb-6">
+        <span class="flex items-center justify-center w-8 h-8 rounded-lg bg-amber-500/20 text-amber-400 font-mono font-bold text-sm border border-amber-500/30">05</span>
+        <h2 class="text-xl sm:text-2xl font-bold text-white">Como Saber se Está Funcionando Corretamente?</h2>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <!-- Success Case -->
+        <div class="p-5 rounded-xl bg-emerald-950/20 border border-emerald-500/40 flex flex-col justify-between">
+          <div>
+            <div class="flex items-center justify-between mb-3">
+              <span class="text-xs font-semibold uppercase tracking-wider text-emerald-400 flex items-center gap-1.5">
+                <i class="fa-solid fa-circle-check"></i> Cenário Perfeito
+              </span>
+              <span class="px-2 py-0.5 rounded bg-emerald-500/20 text-emerald-300 text-xs font-mono font-bold">Ativo</span>
+            </div>
+
+            <!-- Icon Mockup -->
+            <div class="my-4 flex items-center justify-center">
+              <div class="relative inline-block">
+                <!-- Tampermonkey Icon Box -->
+                <div class="w-14 h-14 bg-black rounded-xl border border-slate-700 flex items-center justify-center shadow-lg">
+                  <div class="flex space-x-1">
+                    <div class="w-3.5 h-3.5 rounded-full bg-white"></div>
+                    <div class="w-3.5 h-3.5 rounded-full bg-white"></div>
+                  </div>
+                </div>
+                <!-- Badge '1' -->
+                <span class="absolute -top-2 -right-2 bg-red-600 text-white text-[11px] font-bold w-5 h-5 rounded-full flex items-center justify-center shadow-md border-2 border-slate-900">
+                  1
+                </span>
+              </div>
+            </div>
+
+            <h4 class="text-white font-semibold text-center text-sm mb-1">Ícone Preto com o Número 1</h4>
+            <p class="text-slate-300 text-xs text-center leading-relaxed">
+              Mostra que o Tampermonkey identificou o painel da GLOBO e está rodando o script ativamente.
+            </p>
+          </div>
+        </div>
+
+        <!-- Issue Case: The Red X -->
+        <div class="p-5 rounded-xl bg-red-950/20 border border-red-500/40 flex flex-col justify-between">
+          <div>
+            <div class="flex items-center justify-between mb-3">
+              <span class="text-xs font-semibold uppercase tracking-wider text-red-400 flex items-center gap-1.5">
+                <i class="fa-solid fa-triangle-exclamation"></i> Atenção: O "X" Vermelho
+              </span>
+              <span class="px-2 py-0.5 rounded bg-red-500/20 text-red-300 text-xs font-mono font-bold">Desativado</span>
+            </div>
+
+            <!-- Icon Mockup with Red X -->
+            <div class="my-4 flex items-center justify-center">
+              <div class="relative inline-block">
+                <div class="w-14 h-14 bg-black rounded-xl border border-slate-700 flex items-center justify-center shadow-lg">
+                  <div class="flex space-x-1">
+                    <div class="w-3.5 h-3.5 rounded-full bg-white opacity-80"></div>
+                    <div class="w-3.5 h-3.5 rounded-full bg-white opacity-80"></div>
+                  </div>
+                </div>
+                <!-- Red Cross Icon -->
+                <div class="absolute -bottom-1 -left-1 w-6 h-6 rounded-full bg-red-600 flex items-center justify-center text-white text-xs border-2 border-slate-900 shadow">
+                  <i class="fa-solid fa-xmark font-extrabold"></i>
+                </div>
+              </div>
+            </div>
+
+            <h4 class="text-white font-semibold text-center text-sm mb-1">Apareceu o X Vermelho?</h4>
+            <p class="text-slate-300 text-xs text-center leading-relaxed">
+              Significa que a extensão foi <strong>pausada</strong>. Clique no ícone do Tampermonkey e marque a opção <strong>"Ativado"</strong> para religá-lo!
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- FAQ & Best Practices -->
+    <div class="bg-slate-800/40 border border-slate-700/80 rounded-2xl p-6 sm:p-8 shadow-xl space-y-6">
+      <div class="flex items-center gap-3">
+        <div class="w-8 h-8 rounded-lg bg-indigo-500/20 text-indigo-400 flex items-center justify-center">
+          <i class="fa-solid fa-circle-question"></i>
+        </div>
+        <h3 class="text-xl font-bold text-white">Dúvidas Frequentes & Boas Práticas</h3>
+      </div>
+
+      <div class="space-y-4 text-sm">
+        <details class="group bg-slate-900/60 p-4 rounded-xl border border-slate-800 transition cursor-pointer">
+          <summary class="flex items-center justify-between font-semibold text-white list-none">
+            <span>Por que não usar um Auto-Refresh de página comum (F5)?</span>
+            <i class="fa-solid fa-chevron-down text-xs text-slate-400 group-open:rotate-180 transition-transform"></i>
+          </summary>
+          <p class="text-slate-300 mt-3 text-xs leading-relaxed border-t border-slate-800/80 pt-3">
+            Recarregar a página com F5 destrói a sessão WebRTC de áudio e vídeo em andamento. Se uma chamada tocar no exato segundo do reload, ela é rejeitada automaticamente e você pode levar advertência na plataforma. O nosso script <strong>não atualiza a página</strong>, ele apenas gera pulsos internos no mouse.
+          </p>
+        </details>
+
+        <details class="group bg-slate-900/60 p-4 rounded-xl border border-slate-800 transition cursor-pointer">
+          <summary class="flex items-center justify-between font-semibold text-white list-none">
+            <span>O script pode clicar em alguma coisa e aceitar chamada sem querer?</span>
+            <i class="fa-solid fa-chevron-down text-xs text-slate-400 group-open:rotate-180 transition-transform"></i>
+          </summary>
+          <p class="text-slate-300 mt-3 text-xs leading-relaxed border-t border-slate-800/80 pt-3">
+            <strong>Não!</strong> O script dispara apenas eventos de <code>mousemove</code> (movimentação do mouse) em coordenadas neutras. Ele não executa eventos de <code>click</code> em botões.
+          </p>
+        </details>
+
+        <details class="group bg-slate-900/60 p-4 rounded-xl border border-slate-800 transition cursor-pointer">
+          <summary class="flex items-center justify-between font-semibold text-white list-none">
+            <span>Posso deixar a plataforma online e sair de casa?</span>
+            <i class="fa-solid fa-chevron-down text-xs text-slate-400 group-open:rotate-180 transition-transform"></i>
+          </summary>
+          <p class="text-slate-300 mt-3 text-xs leading-relaxed border-t border-slate-800/80 pt-3 text-amber-200/90">
+            <strong>Atenção:</strong> Não recomendamos se afastar do posto de trabalho por longos períodos enquanto estiver "Disponível". Se uma chamada tocar e você não atender no tempo limite, o sistema registra como "Chamada Perdida" (Missed Call) no relatório de aderência do linguista.
+          </p>
+        </details>
+      </div>
+    </div>
+
+    <!-- Sharing Callout -->
+    <div class="rounded-2xl p-6 sm:p-8 bg-gradient-to-r from-indigo-900/60 via-slate-800 to-indigo-900/60 border border-indigo-500/30 text-center flex flex-col items-center justify-center space-y-4">
+      <div class="w-12 h-12 rounded-2xl bg-emerald-500/20 text-emerald-400 flex items-center justify-center text-2xl shadow-inner">
+        <i class="fa-brands fa-whatsapp"></i>
+      </div>
+      <div>
+        <h3 class="text-lg sm:text-xl font-bold text-white">Ajude os outros colegas de equipe!</h3>
+        <p class="text-xs sm:text-sm text-slate-300 max-w-lg mt-1">
+          Envie esse guia formatado no grupo de intérpretes do WhatsApp para ninguém mais cair por inatividade na GLOBO.
+        </p>
+      </div>
+      <button onclick="shareWhatsApp()" class="px-6 py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-semibold text-sm transition flex items-center gap-2 shadow-lg shadow-emerald-600/30">
+        <i class="fa-brands fa-whatsapp text-lg"></i>
+        <span>Compartilhar no Grupo</span>
+      </button>
+    </div>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="border-t border-slate-800/80 py-8 text-center text-xs text-slate-500">
+    <div class="max-w-4xl mx-auto px-4 space-y-2">
+      <p>Material de apoio técnico para intérpretes e linguistas GLOBO (OPI / VRI).</p>
+      <p>Desenvolvido para execução local e segura (Client-side userscript).</p>
+    </div>
+  </footer>
+
+  <!-- Toast Notification -->
+  <div id="toast" class="fixed bottom-6 right-6 z-50 transform translate-y-20 opacity-0 transition-all duration-300 pointer-events-none flex items-center gap-3 px-4 py-3 rounded-xl bg-slate-800 text-white border border-emerald-500 shadow-2xl shadow-emerald-500/20">
+    <div class="w-7 h-7 rounded-lg bg-emerald-500/20 text-emerald-400 flex items-center justify-center text-sm">
+      <i class="fa-solid fa-check"></i>
+    </div>
+    <span id="toast-text" class="text-xs sm:text-sm font-medium">Código copiado para a área de transferência!</span>
+  </div>
+
+  <script>
+    // Smooth scroll helper
+    function scrollToStep(id) {
+      const el = document.getElementById(id);
+      if (el) {
+        el.scrollIntoView({ behavior: 'smooth' });
+      }
+    }
+
+    // Copy to clipboard with fallback for iFrames and environments
+    function copyCode() {
+      const codeElement = document.getElementById('script-code');
+      const textToCopy = codeElement.innerText;
+
+      // Reliable copy method for all browsers and sandboxed environments
+      const tempTextArea = document.createElement('textarea');
+      tempTextArea.value = textToCopy;
+      tempTextArea.style.position = 'fixed';
+      tempTextArea.style.left = '-9999px';
+      tempTextArea.style.top = '0';
+      document.body.appendChild(tempTextArea);
+      tempTextArea.focus();
+      tempTextArea.select();
+
+      let success = false;
+      try {
+        success = document.execCommand('copy');
+      } catch (err) {
+        console.error('Falha ao copiar:', err);
+      }
+      document.body.removeChild(tempTextArea);
+
+      // Visual feedback
+      const btn = document.getElementById('copy-btn');
+      const btnText = document.getElementById('copy-btn-text');
+      if (btn && btnText) {
+        btnText.innerText = 'Copiado com Sucesso!';
+        btn.classList.remove('bg-indigo-600', 'hover:bg-indigo-500');
+        btn.classList.add('bg-emerald-600', 'hover:bg-emerald-500');
+
+        showToast('Código copiado com sucesso!');
+
+        setTimeout(() => {
+          btnText.innerText = 'Copiar Código Completo';
+          btn.classList.remove('bg-emerald-600', 'hover:bg-emerald-500');
+          btn.classList.add('bg-indigo-600', 'hover:bg-indigo-500');
+        }, 2500);
+      }
+    }
+
+    // Show Toast
+    function showToast(msg) {
+      const toast = document.getElementById('toast');
+      const toastText = document.getElementById('toast-text');
+      if (toast && toastText) {
+        toastText.innerText = msg;
+        toast.classList.remove('translate-y-20', 'opacity-0', 'pointer-events-none');
+        toast.classList.add('translate-y-0', 'opacity-100');
+
+        setTimeout(() => {
+          toast.classList.remove('translate-y-0', 'opacity-100');
+          toast.classList.add('translate-y-20', 'opacity-0', 'pointer-events-none');
+        }, 3000);
+      }
+    }
+
+    // Share tutorial on WhatsApp
+    function shareWhatsApp() {
+      const text = encodeURIComponent(
+        `*DICA GLOBO (OPI/VRI) - Como não deslogar por inatividade!*\n\n` +
+        `Pessoal, achei esse método seguro com Tampermonkey para a plataforma da GLOBO não desconectar por inatividade (não usa F5, não quebra chamadas e não altera a fila).\n\n` +
+        `1. Instale a extensão Tampermonkey no Chrome/Edge.\n` +
+        `2. Crie um novo script e cole o código de micro-movimento a cada 45s configurado para o globohq.com.\n` +
+        `3. Salve com Ctrl+S e dê F5 uma única vez no dashboard.\n\n` +
+        `Se o ícone do Tampermonkey estiver com um 'X' vermelho, basta clicar nele e marcar como 'Ativado'. Se estiver tudo certo, aparecerá o número '1' vermelho!`
+      );
+      window.open(`https://api.whatsapp.com/send?text=${text}`, '_blank');
+    }
+  </script>
+</body>
+</html>
