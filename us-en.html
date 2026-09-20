@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>GLOBO Keep-Alive Tutorial | Keep Queue Active (EN)</title>
+  
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  
+  <!-- FontAwesome 6 CDN -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+            mono: ['"JetBrains Mono"', 'monospace'],
+          }
+        }
+      }
+    }
+  </script>
+</head>
+
+<body class="bg-[#090d16] text-slate-100 font-sans antialiased min-h-screen flex flex-col selection:bg-cyan-500 selection:text-slate-950">
+
+  <header class="sticky top-0 z-50 backdrop-blur-xl bg-[#090d16]/90 border-b border-slate-800/80">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+      <div class="flex items-center space-x-3">
+        <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-cyan-500 to-emerald-500 flex items-center justify-center shadow-lg shadow-cyan-500/20 text-slate-950 font-black text-lg">
+          <i class="fa-solid fa-headset text-base"></i>
+        </div>
+        <div>
+          <div class="flex items-center gap-2">
+            <span class="font-extrabold text-base sm:text-lg tracking-tight text-white">GLOBO HQ</span>
+            <span class="text-[11px] px-2.5 py-0.5 rounded-full bg-emerald-500/15 text-emerald-400 font-bold border border-emerald-500/30 flex items-center gap-1.5">
+              <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
+              v9.1 Validated
+            </span>
+          </div>
+          <p class="text-xs text-slate-400 hidden sm:block">Operational Guide for Linguists & Interpreters (OPI & VRI)</p>
+        </div>
+      </div>
+
+      <!-- Language switch links -->
+      <div class="flex items-center gap-2">
+        <div class="flex items-center bg-slate-900 border border-slate-700/70 p-1 rounded-xl">
+          <a href="pt-br.html" class="px-2.5 py-1 text-xs font-medium rounded-lg text-slate-400 hover:text-white transition">🇧🇷 PT</a>
+          <a href="en.html" class="px-2.5 py-1 text-xs font-bold rounded-lg bg-cyan-500 text-slate-950 shadow-sm transition">🇺🇸 EN</a>
+          <a href="es.html" class="px-2.5 py-1 text-xs font-medium rounded-lg text-slate-400 hover:text-white transition">🇪🇸 ES</a>
+        </div>
+        <button onclick="scrollToId('script-section')" class="hidden sm:inline-flex items-center gap-2 px-3.5 py-2 rounded-xl bg-cyan-500 hover:bg-cyan-400 text-slate-950 font-bold text-xs sm:text-sm transition shadow-md shadow-cyan-950 active:scale-95">
+          <i class="fa-solid fa-code"></i>
+          <span>Script v9.1</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <section class="relative overflow-hidden pt-10 pb-12 border-b border-slate-800/60 bg-gradient-to-b from-[#0e1627] via-[#090d16] to-[#090d16]">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 text-center relative z-10">
+      <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-cyan-500/10 border border-cyan-500/25 text-cyan-300 text-xs font-semibold mb-5">
+        <i class="fa-solid fa-circle-check text-emerald-400"></i>
+        100% Confirmed in Console at <code>globohq.com/linguist_dashboard/index</code>
+      </div>
+
+      <h1 class="text-3xl sm:text-4xl md:text-5xl font-extrabold text-white tracking-tight leading-tight mb-4">
+        Keep GLOBO Queue <span class="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-sky-300 to-emerald-400">Active Without Drops</span>
+      </h1>
+      
+      <p class="text-sm sm:text-base text-slate-300 max-w-2xl mx-auto mb-8 font-normal leading-relaxed">
+        Stop getting logged out for inactivity. This script safely toggles between <strong>Tomorrow</strong> and <strong>Today</strong> and refreshes session history without touching your webcam or reloading the page!
+      </p>
+
+      <!-- Key Value Cards -->
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-3.5 max-w-3xl mx-auto text-left">
+        <div class="p-4 rounded-2xl bg-slate-900/80 border border-slate-800 flex items-start space-x-3.5 shadow-lg">
+          <div class="p-2.5 rounded-xl bg-emerald-500/10 text-emerald-400 shrink-0">
+            <i class="fa-solid fa-video-slash text-base"></i>
+          </div>
+          <div>
+            <h4 class="text-sm font-semibold text-white">No Webcam Conflicts</h4>
+            <p class="text-xs text-slate-400 mt-1">Eliminates <em>"selected device can't be used"</em> by bypassing camera preview.</p>
+          </div>
+        </div>
+
+        <div class="p-4 rounded-2xl bg-slate-900/80 border border-slate-800 flex items-start space-x-3.5 shadow-lg">
+          <div class="p-2.5 rounded-xl bg-cyan-500/10 text-cyan-400 shrink-0">
+            <i class="fa-solid fa-rotate text-base"></i>
+          </div>
+          <div>
+            <h4 class="text-sm font-semibold text-white">Assignments Tabs</h4>
+            <p class="text-xs text-slate-400 mt-1">Toggles <code>Tomorrow</code> & <code>Today</code>, firing native async events in React.</p>
+          </div>
+        </div>
+
+        <div class="p-4 rounded-2xl bg-slate-900/80 border border-slate-800 flex items-start space-x-3.5 shadow-lg">
+          <div class="p-2.5 rounded-xl bg-indigo-500/10 text-indigo-400 shrink-0">
+            <i class="fa-solid fa-signal text-base"></i>
+          </div>
+          <div>
+            <h4 class="text-sm font-semibold text-white">WebRTC Line Intact</h4>
+            <p class="text-xs text-slate-400 mt-1">Zero auto-refresh (F5), keeping your active Twilio voice/video channel open.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <main class="max-w-4xl mx-auto px-4 sm:px-6 py-10 space-y-10 flex-1">
+
+    <section id="script-section" class="bg-slate-900/90 border border-cyan-500/40 rounded-3xl p-6 sm:p-8 shadow-2xl relative">
+      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-4">
+        <div>
+          <span class="text-xs font-bold uppercase tracking-wider text-cyan-400 flex items-center gap-1.5 mb-1">
+            <i class="fa-solid fa-terminal"></i> Production Ready v9.1
+          </span>
+          <h2 class="text-xl sm:text-2xl font-bold text-white">Tampermonkey Userscript</h2>
+        </div>
+
+        <button id="copy-btn" onclick="copyScriptCode()" class="inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-xl bg-cyan-500 hover:bg-cyan-400 text-slate-950 font-bold text-sm transition shadow-lg shadow-cyan-500/25 active:scale-95">
+          <i class="fa-solid fa-copy"></i>
+          <span id="copy-btn-text">Copy Full Script</span>
+        </button>
+      </div>
+
+      <!-- Code Box -->
+      <div class="relative rounded-2xl overflow-hidden border border-slate-700/80 bg-[#070b12] font-mono text-xs sm:text-sm shadow-inner">
+        <div class="flex items-center justify-between px-4 py-3 bg-slate-900/80 border-b border-slate-800 text-slate-400">
+          <div class="flex items-center space-x-2">
+            <span class="w-3 h-3 rounded-full bg-rose-500 inline-block"></span>
+            <span class="w-3 h-3 rounded-full bg-amber-500 inline-block"></span>
+            <span class="w-3 h-3 rounded-full bg-emerald-500 inline-block"></span>
+            <span class="ml-2 font-mono text-xs text-slate-300 font-semibold">globo_keepalive_v9.1.user.js</span>
+          </div>
+          <span class="text-[11px] font-sans px-2.5 py-0.5 rounded bg-cyan-500/20 text-cyan-300 font-bold">
+            Interval: 3m 30s
+          </span>
+        </div>
+
+        <pre class="p-4 sm:p-5 overflow-x-auto text-slate-200 leading-relaxed"><code id="script-code-content">// ==UserScript==
+// @name         Keep Alive GLOBO - Confirmed Working
+// @namespace    http://tampermonkey.net/
+// @version      9.1
+// @description  Keeps GLOBO queue active by toggling Assignments tabs and querying call history
+// @match        https://globohq.com/linguist_dashboard/*
+// @grant        none
+// ==/UserScript==
+
+(function() {
+    'use strict';
+
+    // 3 minutes and 30 seconds interval (210,000 ms) — well before the 10-minute timeout
+    const INTERVAL_MS = 210000;
+
+    function triggerKeepAlive() {
+        const currentTime = new Date().toLocaleTimeString();
+        console.log(`%c[GLOBO Keep-Alive] Presence pulse initiated at: ${currentTime}`, 'color: #00bcd4; font-weight: bold;');
+
+        // 1. Silent background network presence ping (My Video Call History)
+        const historyLink = Array.from(document.querySelectorAll('a, span')).find(el => {
+            const txt = (el.textContent || '').trim().toLowerCase();
+            return txt.includes('my video call history') || txt.includes('my telephone call history');
+        });
+
+        if (historyLink && historyLink.closest('a')) {
+            const targetUrl = historyLink.closest('a').href;
+            fetch(targetUrl, { credentials: 'include' })
+                .then(() => console.log('%c[GLOBO Keep-Alive] History pinged via network.', 'color: #4caf50;'))
+                .catch(() => {});
+        } else {
+            fetch(window.location.href, { credentials: 'include' }).catch(() => {});
+        }
+
+        // 2. Safe native DOM interactions on 'Assignments' tabs (Tomorrow -> Today)
+        const tabs = Array.from(document.querySelectorAll('a, button, li'));
+        const tomorrowTab = tabs.find(el => (el.textContent || '').trim().toLowerCase() === 'tomorrow');
+        const todayTab = tabs.find(el => (el.textContent || '').trim().toLowerCase() === 'today');
+
+        if (tomorrowTab && todayTab) {
+            tomorrowTab.click();
+            console.log('[GLOBO Keep-Alive] "Tomorrow" tab triggered.');
+
+            setTimeout(() => {
+                todayTab.click();
+                console.log('%c[GLOBO Keep-Alive] Return to "Today" tab completed.', 'color: #4caf50; font-weight: bold;');
+            }, 1500);
+        }
+    }
+
+    // First automatic test 5 seconds after page loads
+    setTimeout(triggerKeepAlive, 5000);
+
+    // Repeat on scheduled interval
+    setInterval(triggerKeepAlive, INTERVAL_MS);
+})();</code></pre>
+      </div>
+    </section>
+
+    <section class="space-y-6">
+      <div class="flex items-center space-x-3">
+        <span class="w-8 h-8 rounded-xl bg-cyan-500/20 text-cyan-400 flex items-center justify-center font-bold text-sm">
+          <i class="fa-solid fa-list-check"></i>
+        </span>
+        <h2 class="text-2xl font-extrabold text-white tracking-tight">Step-by-Step Installation</h2>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <!-- Step 1 -->
+        <div class="p-6 rounded-2xl bg-slate-900 border border-slate-800 flex flex-col justify-between space-y-4">
+          <div>
+            <div class="flex items-center justify-between mb-3">
+              <span class="text-xs font-mono font-bold px-2 py-0.5 rounded bg-cyan-500/20 text-cyan-400 border border-cyan-500/30">STEP 01</span>
+              <i class="fa-solid fa-puzzle-piece text-slate-500"></i>
+            </div>
+            <h3 class="text-base font-bold text-white mb-1">Install Tampermonkey Extension</h3>
+            <p class="text-xs sm:text-sm text-slate-400 leading-relaxed">
+              Add the official Tampermonkey extension to your main interpreting browser (Google Chrome or Microsoft Edge).
+            </p>
+          </div>
+          <div class="flex flex-wrap gap-2 pt-2">
+            <a href="https://chromewebstore.google.com/detail/tampermonkey/dhdgffkkebhmkfjojejmpbldmpobfkfo" target="_blank" rel="noopener noreferrer" class="px-3 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-xs font-medium text-slate-200 border border-slate-700 flex items-center gap-1.5 transition">
+              <i class="fa-brands fa-chrome text-amber-400"></i> Chrome Web Store
+            </a>
+            <a href="https://microsoftedge.microsoft.com/addons/detail/tampermonkey/iikmkjmpaadaobahmlepeloendndfphd" target="_blank" rel="noopener noreferrer" class="px-3 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-xs font-medium text-slate-200 border border-slate-700 flex items-center gap-1.5 transition">
+              <i class="fa-brands fa-edge text-sky-400"></i> Edge Add-ons
+            </a>
+          </div>
+        </div>
+
+        <!-- Step 2 -->
+        <div class="p-6 rounded-2xl bg-slate-900 border border-slate-800 flex flex-col justify-between space-y-4">
+          <div>
+            <div class="flex items-center justify-between mb-3">
+              <span class="text-xs font-mono font-bold px-2 py-0.5 rounded bg-sky-500/20 text-sky-400 border border-sky-500/30">STEP 02</span>
+              <i class="fa-solid fa-file-circle-plus text-slate-500"></i>
+            </div>
+            <h3 class="text-base font-bold text-white mb-1">Create New Script & Clear Editor</h3>
+            <p class="text-xs sm:text-sm text-slate-400 leading-relaxed">
+              Click the Tampermonkey icon on your toolbar and select <strong>"Create a new script..."</strong>. Delete all default template text.
+            </p>
+          </div>
+          <div class="p-2.5 rounded-lg bg-slate-950/60 border border-slate-800 text-[11px] text-slate-400 flex items-center gap-2">
+            <i class="fa-solid fa-circle-info text-cyan-400"></i>
+            <span>Leave the editor window completely blank before pasting.</span>
+          </div>
+        </div>
+
+        <!-- Step 3 -->
+        <div class="p-6 rounded-2xl bg-slate-900 border border-slate-800 flex flex-col justify-between space-y-4">
+          <div>
+            <div class="flex items-center justify-between mb-3">
+              <span class="text-xs font-mono font-bold px-2 py-0.5 rounded bg-purple-500/20 text-purple-400 border border-purple-500/30">STEP 03</span>
+              <i class="fa-solid fa-paste text-slate-500"></i>
+            </div>
+            <h3 class="text-base font-bold text-white mb-1">Paste v9.1 Code & Save</h3>
+            <p class="text-xs sm:text-sm text-slate-400 leading-relaxed">
+              Paste the full script code from above and save by pressing <kbd class="px-1.5 py-0.5 rounded bg-slate-800 border border-slate-700 font-mono text-xs text-white">Ctrl + S</kbd> (or menu <strong>File &gt; Save</strong>).
+            </p>
+          </div>
+          <div class="p-2.5 rounded-lg bg-slate-950/60 border border-slate-800 text-[11px] text-slate-400 flex items-center gap-2">
+            <i class="fa-solid fa-check-circle text-purple-400"></i>
+            <span>The userscript activates immediately across matching tabs.</span>
+          </div>
+        </div>
+
+        <!-- Step 4 (With Number 1 requirement and F5) -->
+        <div class="p-6 rounded-2xl bg-slate-900 border-2 border-emerald-500/50 flex flex-col justify-between space-y-4 shadow-xl shadow-emerald-950/30">
+          <div>
+            <div class="flex items-center justify-between mb-3">
+              <span class="text-xs font-mono font-bold px-2 py-0.5 rounded bg-emerald-500/20 text-emerald-400 border border-emerald-500/30">CRITICAL STEP 04</span>
+              <i class="fa-solid fa-arrows-rotate text-emerald-400 animate-spin"></i>
+            </div>
+            <h3 class="text-base font-bold text-white mb-1">Reload (F5) & Verify Red Number 1</h3>
+            <p class="text-xs sm:text-sm text-slate-300 leading-relaxed">
+              Go back to your <code>globohq.com/linguist_dashboard/index</code> tab and press <kbd class="px-1.5 py-0.5 rounded bg-slate-800 border border-slate-700 font-mono text-xs text-white font-bold">F5</kbd>.
+            </p>
+          </div>
+          
+          <div class="p-3.5 rounded-xl bg-emerald-950/40 border border-emerald-500/40 text-xs space-y-2">
+            <div class="flex items-start gap-2.5">
+              <span class="w-5 h-5 rounded-full bg-rose-600 text-white font-black text-[11px] flex items-center justify-center shrink-0 mt-0.5 shadow-sm">1</span>
+              <p class="text-emerald-300 leading-normal">
+                <strong>Mandatory:</strong> The red number <strong>"1"</strong> MUST appear over the Tampermonkey icon!
+              </p>
+            </div>
+            <div class="flex items-start gap-2.5 pt-1 border-t border-emerald-500/20">
+              <i class="fa-solid fa-triangle-exclamation text-amber-400 text-xs shrink-0 mt-0.5"></i>
+              <p class="text-slate-300">
+                If the red number <strong>1</strong> is NOT showing (or if a <strong>red X</strong> appears), press <kbd class="px-1.5 py-0.2 rounded bg-slate-800 text-white font-mono">F5</kbd> to reload and activate it!
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="bg-slate-900/90 border border-slate-800 rounded-3xl p-6 sm:p-8 shadow-xl space-y-4">
+      <div class="flex items-center space-x-3">
+        <span class="w-8 h-8 rounded-xl bg-emerald-500/20 text-emerald-400 flex items-center justify-center font-bold text-sm">
+          <i class="fa-solid fa-terminal"></i>
+        </span>
+        <h3 class="text-xl font-bold text-white">How to Verify in Developer Console (F12)</h3>
+      </div>
+      
+      <p class="text-xs sm:text-sm text-slate-300 leading-relaxed">
+        Press <kbd class="px-2 py-0.5 rounded bg-slate-800 border border-slate-700 font-mono text-xs text-white">F12</kbd> on the GLOBO tab and switch to the <strong>Console</strong> tab. You will see these validated logs:
+      </p>
+
+      <div class="p-4 rounded-xl bg-slate-950 border border-slate-800 font-mono text-xs space-y-1.5">
+        <p class="text-cyan-400 font-bold">&gt; [GLOBO Keep-Alive] Presence pulse initiated at: 19:17:08</p>
+        <p class="text-slate-300">&gt; [GLOBO Keep-Alive] "Tomorrow" tab triggered.</p>
+        <p class="text-emerald-400">&gt; [GLOBO Keep-Alive] History pinged via network.</p>
+        <p class="text-emerald-400 font-bold">&gt; [GLOBO Keep-Alive] Return to "Today" tab completed.</p>
+      </div>
+    </section>
+
+    <section class="rounded-3xl p-6 sm:p-8 bg-gradient-to-r from-emerald-950/40 via-slate-900 to-cyan-950/40 border border-emerald-500/30 text-center flex flex-col items-center justify-center space-y-4">
+      <div class="w-14 h-14 rounded-2xl bg-emerald-500/20 text-emerald-400 flex items-center justify-center text-3xl shadow-inner">
+        <i class="fa-brands fa-whatsapp"></i>
+      </div>
+      <div class="max-w-xl">
+        <h3 class="text-xl sm:text-2xl font-extrabold text-white">Share with Fellow Interpreters!</h3>
+        <p class="text-xs sm:text-sm text-slate-300 mt-2 leading-relaxed">
+          Help colleagues avoid losing calls and attendance flags due to the 10-minute inactivity timeout. Send them the tutorial on WhatsApp!
+        </p>
+      </div>
+      <button onclick="shareWhatsAppEN()" class="px-6 py-3 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-sm transition flex items-center gap-2.5 shadow-xl shadow-emerald-950 active:scale-95">
+        <i class="fa-brands fa-whatsapp text-lg"></i>
+        <span>Send Tutorial to WhatsApp Group</span>
+      </button>
+    </section>
+
+  </main>
+
+  <footer class="border-t border-slate-800/80 py-8 text-center text-xs text-slate-500 bg-[#090d16]">
+    <div class="max-w-4xl mx-auto px-4 space-y-2">
+      <p>Independent operational guide for linguists and interpreters on GLOBO (OPI / VRI).</p>
+      <div class="flex justify-center gap-4 text-slate-400 pt-2 font-medium">
+        <a href="pt-br.html" class="hover:text-white">Português (PT-BR)</a>
+        <span>•</span>
+        <a href="en.html" class="text-cyan-400 underline">English (EN)</a>
+        <span>•</span>
+        <a href="es.html" class="hover:text-white">Español (ES)</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Toast Notification -->
+  <div id="toast" class="fixed bottom-6 right-6 z-50 transform translate-y-24 opacity-0 transition-all duration-300 pointer-events-none flex items-center gap-3 px-4 py-3 rounded-2xl bg-slate-800 text-white border border-cyan-500 shadow-2xl shadow-cyan-500/20">
+    <div class="w-7 h-7 rounded-lg bg-cyan-500/20 text-cyan-400 flex items-center justify-center text-sm">
+      <i class="fa-solid fa-check"></i>
+    </div>
+    <span id="toast-text" class="text-xs sm:text-sm font-medium">Script copied successfully!</span>
+  </div>
+
+  <script>
+    function scrollToId(id) {
+      const el = document.getElementById(id);
+      if (el) el.scrollIntoView({ behavior: 'smooth' });
+    }
+
+    function copyScriptCode() {
+      const codeElement = document.getElementById('script-code-content');
+      const textToCopy = codeElement.innerText;
+
+      const tempArea = document.createElement('textarea');
+      tempArea.value = textToCopy;
+      tempArea.style.position = 'fixed';
+      tempArea.style.left = '-9999px';
+      document.body.appendChild(tempArea);
+      tempArea.focus();
+      tempArea.select();
+
+      try {
+        document.execCommand('copy');
+      } catch (err) {}
+      document.body.removeChild(tempArea);
+
+      const btn = document.getElementById('copy-btn');
+      const btnText = document.getElementById('copy-btn-text');
+      if (btn && btnText) {
+        btnText.innerText = 'Copied!';
+        btn.classList.replace('bg-cyan-500', 'bg-emerald-600');
+        showToastNotification('v9.1 script copied to clipboard!');
+        setTimeout(() => {
+          btnText.innerText = 'Copy Full Script';
+          btn.classList.replace('bg-emerald-600', 'bg-cyan-500');
+        }, 3000);
+      }
+    }
+
+    function showToastNotification(msg) {
+      const toast = document.getElementById('toast');
+      const toastText = document.getElementById('toast-text');
+      if (toast && toastText) {
+        toastText.innerText = msg;
+        toast.classList.remove('translate-y-24', 'opacity-0', 'pointer-events-none');
+        toast.classList.add('translate-y-0', 'opacity-100');
+        setTimeout(() => {
+          toast.classList.remove('translate-y-0', 'opacity-100');
+          toast.classList.add('translate-y-24', 'opacity-0', 'pointer-events-none');
+        }, 3500);
+      }
+    }
+
+    function shareWhatsAppEN() {
+      const text = encodeURIComponent(
+        `*GLOBO OPI / VRI TIP - Definite Keep-Alive Solution v9.1!*\n\n` +
+        `Solved the 10-minute inactivity drop on GLOBO without losing calls and without webcam lockouts!\n\n` +
+        `The v9.1 userscript alternates *Tomorrow* and *Today* tabs and requests call history every 3m30s. The queue stays 100% active.\n\n` +
+        `*CRITICAL:* The red number *1* MUST show over the Tampermonkey icon! If it is NOT showing, press *F5* on the GLOBO tab to reload and activate it.\n\n` +
+        `*Quick steps:*\n` +
+        `1. Install Tampermonkey in Chrome/Edge.\n` +
+        `2. Paste v9.1 script and save (Ctrl + S).\n` +
+        `3. Reload GLOBO with F5 and verify the number 1.`
+      );
+      window.open(`https://api.whatsapp.com/send?text=${text}`, '_blank');
+    }
+  </script>
+</body>
+</html>
