@@ -3,52 +3,244 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Como Extrair a Chave do Kindle KFX e Remover DRM via Calibre</title>
+    <title>Download do Extrator de Chave Kindle KFX e Como Extrair a Chave do Kindle KFX</title>
+    <style>
+        :root {
+            --primary-color: #0066cc;
+            --text-color: #333333;
+            --bg-color: #f4f7f9;
+            --card-bg: #ffffff;
+            --code-bg: #2d3748;
+            --code-color: #f7fafc;
+            --border-color: #e2e8f0;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: var(--bg-color);
+            margin: 0;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 850px;
+            margin: 0 auto;
+            background: var(--card-bg);
+            padding: 40px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+        }
+
+        h1 {
+            color: #1a202c;
+            font-size: 2.2rem;
+            border-bottom: 2px solid var(--primary-color);
+            padding-bottom: 10px;
+            margin-top: 0;
+        }
+
+        h2 {
+            color: #2b6cb0;
+            font-size: 1.5rem;
+            margin-top: 30px;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 8px;
+        }
+
+        h3 {
+            color: #2d3748;
+            font-size: 1.2rem;
+            margin-top: 20px;
+        }
+
+        p, li {
+            font-size: 1.05rem;
+        }
+
+        a {
+            color: var(--primary-color);
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        .meta-info {
+            background-color: #ebf8ff;
+            border-left: 4px solid var(--primary-color);
+            padding: 12px 16px;
+            margin-bottom: 25px;
+            border-radius: 0 4px 4px 0;
+        }
+
+        .img-container {
+            text-align: center;
+            margin: 25px 0;
+        }
+
+        .img-container img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 6px;
+            border: 1px solid var(--border-color);
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .img-caption {
+            font-size: 0.9rem;
+            color: #718096;
+            margin-top: 8px;
+        }
+
+        code, pre {
+            font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace;
+        }
+
+        pre {
+            background-color: var(--code-bg);
+            color: var(--code-color);
+            padding: 15px;
+            border-radius: 6px;
+            overflow-x: auto;
+            font-size: 0.95rem;
+        }
+
+        p code {
+            background-color: #edf2f7;
+            color: #c53030;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-size: 0.9em;
+        }
+
+        ol, ul {
+            padding-left: 24px;
+        }
+
+        li {
+            margin-bottom: 10px;
+        }
+
+        .footer-credits {
+            margin-top: 50px;
+            padding-top: 20px;
+            border-top: 1px solid var(--border-color);
+            font-size: 0.9rem;
+            color: #718096;
+            background-color: #f7fafc;
+            padding: 15px;
+            border-radius: 6px;
+        }
+    </style>
 </head>
 <body>
 
+<div class="container">
+
     <header>
-        <h1>Como Baixar o Kindle KFX Key Extractor e Extrair Chaves do Kindle KFX</h1>
-        <p><em>Artigo original publicado por Epubor | Traduzido para português.</em></p>
+        <h1>Download do Extrator de Chave Kindle KFX e Como Extrair a Chave do Kindle KFX</h1>
+        <div class="meta-info">
+            <strong>Tradução em Português</strong> | Conteúdo adaptado do artigo original da <a href="https://www.epubor.com/kindle-kfx-key-extractor-download-and-how-to-extract-key-from-kindle-kfx.html" target="_blank" rel="noopener">Epubor</a>.
+        </div>
     </header>
 
     <main>
         <section>
-            <h2>Visão Geral</h2>
-            <p>Com o auxílio de ferramentas como o plugin DeDRM v10.0.32 e o KFXArchiver para Calibre, é possível obter a chave criptográfica de livros Kindle baixados pelo aplicativo Kindle para Windows para leitura e backup pessoal.</p>
+            <p>O <strong>Kindle KFX Key Extractor</strong> (ou Extrator de Chave Kindle KFX) é uma ferramenta essencial para usuários que desejam fazer backup de seus e-books do Kindle. Neste guia completo, você aprenderá como baixar essa ferramenta e como extrair com sucesso a chave de criptografia dos arquivos no formato Kindle KFX para remoção de DRM no Windows.</p>
         </section>
 
         <section>
-            <h2>Método 1: Windows 11 (Aplicativo Kindle da MS Store)</h2>
+            <h2>Método 1: Extrair a chave KFX do app Kindle para Windows 11 (App Store)</h2>
+            <p>Se você estiver utilizando o aplicativo Kindle baixado diretamente da Microsoft Store no Windows 11, siga as etapas abaixo para extrair a chave KFX e converter os livros.</p>
+
             <ol>
-                <li>Baixe seus livros Kindle para acesso offline através do aplicativo <strong>Kindle para Windows</strong> (Microsoft Store).</li>
-                <li>Baixe e descompacte a versão mais recente do <strong>DeDRM_tools.zip</strong> (v10.0.32 ou superior).</li>
-                <li>Execute o utilitário <code>MSIXKFXArchiver.exe</code> contido na pasta extraída. Ele processará os arquivos e gerará a pasta <code>archived_kfx</code> com os arquivos sem DRM e a chave <code>oldbooks.k4i</code>.</li>
-                <li>No Calibre, instale o plugin <strong>KFX Input</strong> (arquivo <code>.zip</code> sem descompactar).</li>
-                <li>Arraste os arquivos <code>.kfx-zip</code> da pasta <code>archived_kfx</code> para a biblioteca do Calibre. Eles serão convertidos para KFX sem DRM e poderão ser exportados para EPUB ou PDF.</li>
+                <li>Baixe os e-books do Kindle para acesso offline através do aplicativo <strong>Kindle para Windows</strong> (instalado via Microsoft Store).</li>
+                <li>Baixe a versão mais recente das ferramentas DeDRM: <a href="https://github.com/noDRM/DeDRM_tools/releases" target="_blank" rel="noopener">Download DeDRM Tools</a>. Extraia o arquivo <code>.zip</code> baixado.</li>
+                <li>Localize e execute o arquivo <code>MSIXKFXArchiver.exe</code> contido dentro do diretório das ferramentas DeDRM extraídas.</li>
             </ol>
+
+            <div class="img-container">
+                <img src="https://www.epubor.com/images/u/msixkfxarchiver-exe.png" alt="Executando o MSIXKFXArchiver.exe">
+                <div class="img-caption">Figura 1: Execução do utilitário MSIXKFXArchiver.exe</div>
+            </div>
+
+            <ol start="4">
+                <li>O programa irá ler os livros armazenados pelo app da Microsoft Store, gerando automaticamente uma pasta chamada <code>archived_kfx</code> contendo o arquivo de chave <code>oldbooks.k4i</code> e os arquivos em formato <code>.kfx-zip</code>.</li>
+            </ol>
+
+            <div class="img-container">
+                <img src="https://www.epubor.com/images/u/archived-kfx-folder.png" alt="Pasta archived_kfx gerada com chave k4i">
+                <div class="img-caption">Figura 2: Arquivos gerados na pasta archived_kfx</div>
+            </div>
+
+            <ol start="5">
+                <li>Abra o software <a href="https://calibre-ebook.com/download" target="_blank" rel="noopener">Calibre</a>. Se ainda não tiver o plugin <strong>KFX Input</strong> instalado, acesse <em>Preferências > Plugins > Obter novos plugins</em>, busque por <strong>KFX Input</strong> e faça a instalação.</li>
+                <li>Arraste o arquivo <code>.kfx-zip</code> gerado para a interface do Calibre. O livro será importado e o DRM removido com sucesso.</li>
+            </ol>
+
+            <div class="img-container">
+                <img src="https://www.epubor.com/images/u/kfx-input-calibre.png" alt="Importação do arquivo kfx-zip para o Calibre">
+                <div class="img-caption">Figura 3: Livro importado sem DRM no Calibre</div>
+            </div>
         </section>
 
         <section>
-            <h2>Método 2: Windows 10 e 11 (Kindle para PC v2.9.x)</h2>
+            <h2>Método 2: Extrair a chave KFX usando Kindle para PC v2.9.x no Windows 10 e 11</h2>
+            <p>Para quem utiliza as versões clássicas do programa Kindle para PC (versão 2.9.1 ou similar), o processo de extração exige o uso da linha de comando.</p>
+
             <ol>
-                <li>Instale o <strong>Calibre</strong> e o aplicativo <strong>Kindle para PC (v2.9.1)</strong>.</li>
-                <li>No Calibre, navegue em <em>Preferências > Plugins > Carregar plugin de arquivo</em> e instale o <strong>DeDRM_plugin.zip</strong> e o <strong>KFX Input.zip</strong>. Reinicie o Calibre.</li>
-                <li>Copie o arquivo <code>KFXArchiver291.exe</code> da pasta dos plugins DeDRM para o diretório raiz do aplicativo Kindle (geralmente em <code>C:\Users\SEU_USUARIO\AppData\Local\Amazon\Kindle\application</code>).</li>
-                <li>Abra o Kindle para PC, faça o login e baixe os livros desejados para offline.</li>
-                <li>Crie uma pasta chamada <code>kfxoutput</code> no seu diretório de usuário (ex.: <code>C:\Users\SEU_USUARIO\kfxoutput</code>).</li>
-                <li>Abra o Prompt de Comando (<code>cmd</code>) e execute o comando:
-                    <pre><code>C:\Users\SEU_USUARIO\AppData\Local\Amazon\Kindle\application\KFXArchiver291.exe "C:\Users\SEU_USUARIO\Documents\My Kindle Content" "C:\Users\SEU_USUARIO\kfxoutput" kfxoutput.k4i</code></pre>
+                <li>Instale o software <a href="https://calibre-ebook.com/" target="_blank" rel="noopener">Calibre</a> e a versão específica do aplicativo Kindle para PC (v2.9.1).</li>
+                <li>No Calibre, acesse <em>Preferências > Plugins > Carregar plugin de um arquivo</em> e instale os plugins <code>DeDRM_plugin.zip</code> e <code>KFX Input.zip</code>. Reinicie o Calibre após a instalação.</li>
+                <li>Copie o executável <code>KFXArchiver291.exe</code> (encontrado no pacote do DeDRM) para a pasta de instalação do app Kindle:
+                    <br><code>C:\Users\SEU_USUARIO\AppData\Local\Amazon\Kindle\application</code>
                 </li>
-                <li>Copie os arquivos <code>.kfx-zip</code> gerados dentro de <code>kfxoutput</code> para a biblioteca do Calibre para obter as versões desbloqueadas em EPUB/PDF.</li>
+            </ol>
+
+            <div class="img-container">
+                <img src="https://www.epubor.com/images/u/kfxarchiver291-exe-location.png" alt="Copiar KFXArchiver291.exe para a pasta do Kindle">
+                <div class="img-caption">Figura 4: Localização correta do KFXArchiver291.exe</div>
+            </div>
+
+            <ol start="4">
+                <li>Abra o Kindle para PC, faça login na sua conta Amazon e baixe todos os livros que deseja converter.</li>
+                <li>Crie uma nova pasta em seu computador onde os arquivos processados serão salvos (por exemplo: <code>C:\Users\SEU_USUARIO\kfxoutput</code>).</li>
+                <li>Abra o <strong>Prompt de Comando (CMD)</strong> do Windows e execute a seguinte linha de comando (substituindo <code>SEU_USUARIO</code> pelo seu nome de usuário no Windows):</li>
+            </ol>
+
+            <pre><code>C:\Users\SEU_USUARIO\AppData\Local\Amazon\Kindle\application\KFXArchiver291.exe "C:\Users\SEU_USUARIO\Documents\My Kindle Content" "C:\Users\SEU_USUARIO\kfxoutput" kfxoutput.k4i</code></pre>
+
+            <div class="img-container">
+                <img src="https://www.epubor.com/images/u/cmd-kfx-extractor.png" alt="Executando comando no CMD para extrair a chave KFX">
+                <div class="img-caption">Figura 5: Comando executado no Prompt de Comando</div>
+            </div>
+
+            <ol start="7">
+                <li>Após a conclusão da execução do comando, abra a pasta de destino (<code>kfxoutput</code>). Você encontrará os livros convertidos e a chave extraída.</li>
+                <li>Importe os arquivos resultante <code>.kfx-zip</code> para o Calibre para convertê-los livremente para EPUB, PDF ou MOBI.</li>
             </ol>
         </section>
 
-        <footer>
-            <hr>
-            <p><strong>Aviso Legal e Créditos:</strong> Este artigo é uma tradução do conteúdo publicado originalmente por <a href="https://www.epubor.com/kindle-kfx-key-extractor-download-and-how-to-extract-key-from-kindle-kfx.html" target="_blank" rel="noopener">Epubor</a>. O remoção de DRM destina-se estritamente ao uso pessoal e backup de conteúdos adquiridos legalmente. Não redistribua arquivos protegidos por direitos autorais.</p>
-        </footer>
+        <section>
+            <h2>Solução Alternativa Simplificada: Epubor Ultimate</h2>
+            <p>Se você busca uma solução mais simples e que não exija linhas de comando ou configurações complexas de plugins no Calibre, o <a href="https://www.epubor.com/ultimate.html" target="_blank" rel="noopener">Epubor Ultimate</a> automatiza todo o processo de detecção de chaves, remoção de DRM e conversão do Kindle KFX com apenas um clique.</p>
 
+            <div class="img-container">
+                <img src="https://www.epubor.com/images/u/epubor-ultimate-kfx.png" alt="Interface do Epubor Ultimate removendo DRM de KFX">
+                <div class="img-caption">Figura 6: Remoção automática de DRM com Epubor Ultimate</div>
+            </div>
+        </section>
     </main>
+
+    <footer class="footer-credits">
+        <p><strong>Aviso de Isenção de Responsabilidade e Créditos:</strong></p>
+        <p>Este documento é uma tradução em português com fins educacionais e de documentação. O artigo original pertence à <a href="https://www.epubor.com/" target="_blank" rel="noopener">Epubor</a> e pode ser acessado em sua versão em inglês no link: <a href="https://www.epubor.com/kindle-kfx-key-extractor-download-and-how-to-extract-key-from-kindle-kfx.html" target="_blank" rel="noopener">Article Source</a>.</p>
+        <p>A remoção de DRM deve ser realizada exclusivamente para fins de cópia de segurança (backup) e uso pessoal em e-readers de sua propriedade.</p>
+    </footer>
+
+</div>
+
 </body>
 </html>
